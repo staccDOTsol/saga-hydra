@@ -36,7 +36,7 @@ export const processInitForMintStruct = new beet.BeetArgsStruct<
  * Accounts required by the _processInitForMint_ instruction
  *
  * @property [_writable_, **signer**] signer
- * @property [] authority
+ * @property [_writable_] authority
  * @property [_writable_] fanout
  * @property [_writable_] fanoutForMint
  * @property [_writable_] mintHoldingAccount
@@ -86,7 +86,7 @@ export function createProcessInitForMintInstruction(
     },
     {
       pubkey: accounts.authority,
-      isWritable: false,
+      isWritable: true,
       isSigner: false,
     },
     {

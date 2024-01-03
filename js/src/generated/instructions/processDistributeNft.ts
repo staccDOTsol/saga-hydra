@@ -37,7 +37,7 @@ export const processDistributeNftStruct = new beet.BeetArgsStruct<
  * Accounts required by the _processDistributeNft_ instruction
  *
  * @property [_writable_, **signer**] payer
- * @property [] authority
+ * @property [_writable_] authority
  * @property [_writable_] member
  * @property [_writable_] membershipMintTokenAccount
  * @property [] membershipKey
@@ -104,7 +104,7 @@ export function createProcessDistributeNftInstruction(
     },
     {
       pubkey: accounts.authority,
-      isWritable: false,
+      isWritable: true,
       isSigner: false,
     },
     {

@@ -57,7 +57,7 @@ pub fn distribute_for_wallet(
     let membership_voucher_info = membership_voucher.to_account_info();
     assert_owned_by(&fanout_info, &crate::ID)?;
     assert_owned_by(&membership_voucher_info, &crate::ID)?;
-    //assert_owned_by_one(&member.to_account_info(), vec![&System::id(), &crate::id(), Pubkey::from_str("ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf").unwrap()])?;
+    //assert_owned_by_one(&member.to_account_info(), vec![&System::id(), &crate::id(), Pubkey::from_str("2Nok7QXx63P8fpG3CYup6rkvPasfPoLAUakDBb1sB97Y").unwrap()])?;
     assert_membership_model(fanout, MembershipModel::Wallet)?;
     //assert_shares_distributed(fanout)?;
     if distribute_for_mint {

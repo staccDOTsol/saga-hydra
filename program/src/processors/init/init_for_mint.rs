@@ -12,6 +12,9 @@ pub struct InitializeFanoutForMint<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
     /// CHECK: Authority is ok 
+    #[account(
+        mut)
+    ]
     pub authority: AccountInfo<'info>,
     #[account(
     mut,

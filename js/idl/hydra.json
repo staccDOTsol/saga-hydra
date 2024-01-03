@@ -112,7 +112,7 @@
         },
         {
           "name": "authority",
-          "isMut": false,
+          "isMut": true,
           "isSigner": false
         },
         {
@@ -557,7 +557,7 @@
         },
         {
           "name": "authority",
-          "isMut": false,
+          "isMut": true,
           "isSigner": false
         },
         {
@@ -1522,5 +1522,11 @@
       "name": "InvalidCloseAccountDestination",
       "msg": "Sending Sol to a SPL token destination will render the sol unusable"
     }
-  ]
+  ],
+  "metadata": {
+    "address": "ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf",
+    "origin": "anchor",
+    "binaryVersion": "0.29.0",
+    "libVersion": "0.29.0"
+  }
 }

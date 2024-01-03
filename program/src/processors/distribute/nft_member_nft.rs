@@ -88,7 +88,7 @@ pub fn distribute_nft_for_nft(
     assert_owned_by(&membership_voucher_info, &crate::ID)?;
     assert_owned_by(&member.to_account_info(), &System::id())?;
     assert_membership_model(fanout, MembershipModel::NFT)?;
-    //assert_shares_distributed(fanout)?;
+    assert_shares_distributed(fanout)?;
     assert_holding(
         &member.to_account_info(),
         membership_mint_token_account,

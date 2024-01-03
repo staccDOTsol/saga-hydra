@@ -82,17 +82,17 @@ pub fn distribute_mint<'info>(
     let fanout_mint_member_token_account_info = fanout_mint_member_token_account.to_account_info();
     let fanout_for_mint = fanout_for_mint;
     let total_shares = fanout.total_shares as u64;
-    assert_owned_by(fanout_for_mint, &crate::ID)?;
-    assert_owned_by(&fanout_mint_member_token_account_info, &Token::id())?;
-    assert_owned_by(holding_account, &anchor_spl::token::Token::id())?;
+    msg!("Distribute For Mint 2");
     assert_ata(
         &holding_account.to_account_info(),
         &fanout.key(),
         &fanout_mint.key(),
         Some(HydraError::HoldingAccountMustBeAnATA.into()),
     )?;
+    msg!("Distribute For Mint 3");
     let fanout_for_mint_object =
         &mut parse_fanout_mint(fanout_for_mint, &fanout.key(), &mint.key())?;
+    msg!("Distribute For Mint 4");
     if holding_account.key() != fanout_for_mint_object.token_account {
         return Err(HydraError::InvalidHoldingAccount.into());
     }
@@ -111,15 +111,18 @@ pub fn distribute_mint<'info>(
         membership_voucher.stake_time,
         fanout_for_mint_object.total_inflow,
     )?;
+    msg!("Distribute For Mint 5");
     let holding_account_ata = parse_token_account(holding_account, &fanout.key())?;
+    
     parse_token_account(&fanout_mint_member_token_account_info, &member.key())?;
-
+    msg ! ( "Distribute For Mint 6" ) ;
     let current_snapshot = holding_account_ata.amount;
     update_inflow_for_mint(fanout, fanout_for_mint_object, current_snapshot)?;
     let inflow_diff = calculate_inflow_change(
         fanout_for_mint_object.total_inflow,
         fanout_for_mint_membership_voucher.last_inflow,
     )?;
+    msg!("Distribute For Mint 7");
     let shares = membership_voucher.shares as u64;
     let dif_dist = calculate_dist_amount(shares, inflow_diff, total_shares)?;
     update_snapshot_for_mint(
@@ -127,13 +130,15 @@ pub fn distribute_mint<'info>(
         fanout_for_mint_membership_voucher,
         dif_dist,
     )?;
+    msg ! ( "Distribute For Mint 8" ) ;
 
     let mut fanout_for_mint_membership_voucher_data: &mut [u8] =
         &mut fanout_for_mint_membership_voucher_unchecked.try_borrow_mut_data()?;
     let mut fanout_for_mint_data: &mut [u8] = &mut fanout_for_mint.try_borrow_mut_data()?;
-
+    msg ! ( "Distribute For Mint 9" ) ;
     fanout_for_mint_membership_voucher
         .try_serialize(&mut fanout_for_mint_membership_voucher_data)?;
+    msg ! ( "Distribute For Mint 10" ) ;
     fanout_for_mint_object.try_serialize(&mut fanout_for_mint_data)?;
     transfer_from_mint_holding(
         fanout,

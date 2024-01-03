@@ -17,6 +17,7 @@ pub struct DistributeNftMember<'info> {
     #[account(mut)]
     pub payer: Signer<'info>,
     /// CHECK: Authority is ok
+    #[account(mut)]
     pub authority: AccountInfo<'info>,
     #[account(mut)]
     /// CHECK: Checked in program
@@ -24,8 +25,6 @@ pub struct DistributeNftMember<'info> {
     #[
     account(
     mut,
-    constraint = membership_mint_token_account.delegate.is_none(),
-    constraint = membership_mint_token_account.close_authority.is_none(),
     constraint = membership_mint_token_account.mint == membership_key.key(),
     )]
     pub membership_mint_token_account: Account<'info, TokenAccount>,
@@ -35,7 +34,6 @@ pub struct DistributeNftMember<'info> {
         payer = payer,
         space = FANOUT_MEMBERSHIP_VOUCHER_SIZE,
         seeds = [b"jareout-membership", fanout.key().as_ref(), membership_key.key().as_ref()],
-        constraint = membership_voucher.membership_key == membership_key.key(),
         bump
     )]
     pub membership_voucher: Box<Account<'info, FanoutMembershipVoucher>>,

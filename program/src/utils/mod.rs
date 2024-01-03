@@ -67,13 +67,16 @@ pub fn parse_fanout_mint(
     fanout_mint: &Pubkey,
 ) -> Result<FanoutMint> {
     let account_info = fanout_for_mint.to_account_info();
+    println!("fanout_for_mint: {:?}", fanout_for_mint);
     let fanout_mint_bump = assert_derivation(
         &crate::ID,
         &account_info,
         &[b"jareout-config", fanout.as_ref(), fanout_mint.as_ref()],
         Some(HydraError::InvalidFanoutForMint.into()),
     )?;
+    println !("fanout_mint_bump: {:?}", fanout_mint_bump);
     let mut fanout_mint_data: &[u8] = &fanout_for_mint.try_borrow_mut_data()?;
+    println!("fanout_mint_data: {:?}", fanout_mint_data);
     let fanout_for_mint_object: FanoutMint = FanoutMint::try_deserialize(&mut fanout_mint_data)?;
     if fanout_mint_bump != fanout_for_mint_object.bump_seed {
         msg!("Invalid Fanout For Mint");
