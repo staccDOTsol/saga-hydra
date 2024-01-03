@@ -34,6 +34,7 @@ pub fn distribute_native<'info>(
         fanout_snapshot_less_min,
     );
     if fanout_transfer.is_err() {
+        println!("Fanout Transfer Error {:?}", fanout_transfer.err());
         return Err(HydraError::BadArtithmetic.into());
     }
 
@@ -131,15 +132,6 @@ pub fn distribute_mint<'info>(
         dif_dist,
     )?;
     msg ! ( "Distribute For Mint 8" ) ;
-
-    let mut fanout_for_mint_membership_voucher_data: &mut [u8] =
-        &mut fanout_for_mint_membership_voucher_unchecked.try_borrow_mut_data()?;
-    let mut fanout_for_mint_data: &mut [u8] = &mut fanout_for_mint.try_borrow_mut_data()?;
-    msg ! ( "Distribute For Mint 9" ) ;
-    fanout_for_mint_membership_voucher
-        .try_serialize(&mut fanout_for_mint_membership_voucher_data)?;
-    msg ! ( "Distribute For Mint 10" ) ;
-    fanout_for_mint_object.try_serialize(&mut fanout_for_mint_data)?;
     transfer_from_mint_holding(
         fanout,
         fanout.to_account_info(),
