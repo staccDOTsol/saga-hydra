@@ -135,8 +135,9 @@ pub fn distribute_for_nft(
     if distribute_for_mint {
         let mut fanout_for_mint_membership_voucher: &mut Account<'_, FanoutMembershipMintVoucher> = &mut ctx.accounts.fanout_for_mint_membership_voucher.as_mut().unwrap();
 
-
-        if fanout_for_mint_membership_voucher.fanout == Pubkey::default() {
+        msg!("distribute for mint");
+        if fanout_for_mint_membership_voucher.fanout != fanout.key() {
+            msg!("fanout_for_mint_membership_voucher.fanout != fanout.key()");
             
             fanout_for_mint_membership_voucher.fanout = fanout.key();
             fanout_for_mint_membership_voucher.fanout_mint = ctx.accounts.fanout_mint.key();
