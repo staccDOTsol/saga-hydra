@@ -8,8 +8,7 @@ target/
 
 node_modules/
 **/*.rs.bk
-build/
-dist/
+
 
 npm-debug.log*
 yarn-debug.log*
