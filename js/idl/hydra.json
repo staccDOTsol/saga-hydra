@@ -548,6 +548,128 @@
       ]
     },
     {
+      "name": "processDistributeNftNft",
+      "accounts": [
+        {
+          "name": "member",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "membershipMintTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "membershipKey",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "membershipVoucher",
+          "isMut": true,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "jareout-membership"
+              },
+              {
+                "kind": "account",
+                "type": "publicKey",
+                "account": "Fanout",
+                "path": "fanout"
+              },
+              {
+                "kind": "account",
+                "type": "publicKey",
+                "account": "Mint",
+                "path": "membership_key"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fanout",
+          "isMut": true,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "jareout-config"
+              },
+              {
+                "kind": "account",
+                "type": "string",
+                "account": "Fanout",
+                "path": "fanout.name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "holdingAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "fanoutForMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "fanoutForMintMembershipVoucher",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "fanoutMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "fanoutMintMemberTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "switchboardFunction",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "switchboardRequest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "enclaveSigner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
       "name": "processDistributeNft",
       "accounts": [
         {
@@ -634,7 +756,34 @@
         {
           "name": "fanoutForMintMembershipVoucher",
           "isMut": true,
-          "isSigner": false
+          "isSigner": false,
+          "isOptional": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "jareout-membership"
+              },
+              {
+                "kind": "account",
+                "type": "publicKey",
+                "path": "fanout_for_mint"
+              },
+              {
+                "kind": "account",
+                "type": "publicKey",
+                "account": "Mint",
+                "path": "membership_key"
+              },
+              {
+                "kind": "account",
+                "type": "publicKey",
+                "account": "Mint",
+                "path": "fanout_mint"
+              }
+            ]
+          }
         },
         {
           "name": "fanoutMint",

@@ -1,4 +1,4 @@
-use crate::MembershipModel;
+use crate::{MembershipModel, state::FanoutMembershipMintVoucher};
 use anchor_lang::prelude::*;
 
 use crate::{
@@ -37,7 +37,7 @@ pub struct DistributeWalletMember<'info> {
     pub fanout_for_mint: UncheckedAccount<'info>,
     #[account(mut)]
     /// CHECK: Optional Account
-    pub fanout_for_mint_membership_voucher: UncheckedAccount<'info>,
+    pub fanout_for_mint_membership_voucher: Account<'info, FanoutMembershipMintVoucher>,
     pub fanout_mint: Account<'info, Mint>,
     #[account(mut)]
     /// CHECK: Optional Account

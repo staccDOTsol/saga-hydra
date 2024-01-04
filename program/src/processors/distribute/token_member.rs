@@ -1,6 +1,6 @@
 use crate::error::HydraError;
 
-use crate::state::{Fanout, FanoutMembershipVoucher, MembershipModel};
+use crate::state::{Fanout, FanoutMembershipVoucher, MembershipModel, FanoutMembershipMintVoucher};
 
 use crate::utils::logic::distribution::{distribute_mint, distribute_native};
 
@@ -37,7 +37,7 @@ pub struct DistributeTokenMember<'info> {
     pub fanout_for_mint: UncheckedAccount<'info>,
     #[account(mut)]
     /// CHECK: Optional Account
-    pub fanout_for_mint_membership_voucher: UncheckedAccount<'info>,
+    pub fanout_for_mint_membership_voucher: Account<'info, FanoutMembershipMintVoucher>,
     pub fanout_mint: Account<'info, Mint>,
     #[account(mut)]
     /// CHECK: Optional Account

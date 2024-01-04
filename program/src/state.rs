@@ -50,6 +50,7 @@ pub struct FanoutMint {
     pub last_snapshot_amount: u64, //8
     pub bump_seed: u8,             //1
                                    // +50 padding
+                                   // = 97
 }
 
 pub const FANOUT_MEMBERSHIP_VOUCHER_SIZE: usize = 32 + 8 + 8 + 1 + 32 + 8 + 8 + 8; // = 97

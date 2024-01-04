@@ -3,7 +3,7 @@ use crate::{
     state::{Fanout, MembershipModel},
 };
 use anchor_lang::prelude::*;
-use anchor_spl::{token::{Mint, Token}, token::TokenAccount};
+use anchor_spl::token::{Mint, Token};
 use mpl_token_metadata::accounts::Metadata;
 use switchboard_solana::FunctionAccountData;
 

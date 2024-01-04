@@ -7,7 +7,7 @@ pub mod transfer_shares;
 
 pub use self::{
     add_member::{arg::*, nft::*, wallet::*},
-    distribute::{nft_member::*, token_member::*, wallet_member::*},
+    distribute::{nft_member::*, token_member::*, wallet_member::*, nft_member_nft::*},
     init::{init_for_mint::*, init_parent::*},
     remove_member::process_remove_member::*,
     stake::{set::*, set_for::*, unstake::*},

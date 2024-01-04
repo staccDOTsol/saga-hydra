@@ -45,7 +45,7 @@ export const processDistributeNftStruct = new beet.BeetArgsStruct<
  * @property [_writable_] fanout
  * @property [_writable_] holdingAccount
  * @property [_writable_] fanoutForMint
- * @property [_writable_] fanoutForMintMembershipVoucher
+ * @property [_writable_] fanoutForMintMembershipVoucher (optional)
  * @property [] fanoutMint
  * @property [_writable_] fanoutMintMemberTokenAccount
  * @property [] collection
@@ -64,7 +64,7 @@ export type ProcessDistributeNftInstructionAccounts = {
   fanout: web3.PublicKey;
   holdingAccount: web3.PublicKey;
   fanoutForMint: web3.PublicKey;
-  fanoutForMintMembershipVoucher: web3.PublicKey;
+  fanoutForMintMembershipVoucher?: web3.PublicKey;
   fanoutMint: web3.PublicKey;
   fanoutMintMemberTokenAccount: web3.PublicKey;
   systemProgram?: web3.PublicKey;
@@ -79,6 +79,11 @@ export const processDistributeNftInstructionDiscriminator = [108, 240, 68, 81, 1
 
 /**
  * Creates a _ProcessDistributeNft_ instruction.
+ *
+ * Optional accounts that are not provided will be omitted from the accounts
+ * array passed with the instruction.
+ * An optional account that is set cannot follow an optional account that is unset.
+ * Otherwise an Error is raised.
  *
  * @param accounts that will be accessed while the instruction is processed
  * @param args to provide as instruction data to the program
@@ -142,47 +147,50 @@ export function createProcessDistributeNftInstruction(
       isWritable: true,
       isSigner: false,
     },
-    {
+  ];
+
+  if (accounts.fanoutForMintMembershipVoucher != null) {
+    keys.push({
       pubkey: accounts.fanoutForMintMembershipVoucher,
       isWritable: true,
       isSigner: false,
-    },
-    {
-      pubkey: accounts.fanoutMint,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.fanoutMintMemberTokenAccount,
-      isWritable: true,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.systemProgram ?? web3.SystemProgram.programId,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.rent ?? web3.SYSVAR_RENT_PUBKEY,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.tokenProgram ?? splToken.TOKEN_PROGRAM_ID,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.collection,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.metadata,
-      isWritable: false,
-      isSigner: false,
-    },
-  ];
+    });
+  }
+  keys.push({
+    pubkey: accounts.fanoutMint,
+    isWritable: false,
+    isSigner: false,
+  });
+  keys.push({
+    pubkey: accounts.fanoutMintMemberTokenAccount,
+    isWritable: true,
+    isSigner: false,
+  });
+  keys.push({
+    pubkey: accounts.systemProgram ?? web3.SystemProgram.programId,
+    isWritable: false,
+    isSigner: false,
+  });
+  keys.push({
+    pubkey: accounts.rent ?? web3.SYSVAR_RENT_PUBKEY,
+    isWritable: false,
+    isSigner: false,
+  });
+  keys.push({
+    pubkey: accounts.tokenProgram ?? splToken.TOKEN_PROGRAM_ID,
+    isWritable: false,
+    isSigner: false,
+  });
+  keys.push({
+    pubkey: accounts.collection,
+    isWritable: false,
+    isSigner: false,
+  });
+  keys.push({
+    pubkey: accounts.metadata,
+    isWritable: false,
+    isSigner: false,
+  });
 
   if (accounts.anchorRemainingAccounts != null) {
     for (const acc of accounts.anchorRemainingAccounts) {

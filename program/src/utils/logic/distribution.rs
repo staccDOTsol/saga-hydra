@@ -61,7 +61,7 @@ pub fn distribute_native<'info>(
 pub fn distribute_mint<'info>(
     fanout_mint: Account<'info, Mint>,
     fanout_for_mint: &mut UncheckedAccount<'info>,
-    fanout_for_mint_membership_voucher: &mut UncheckedAccount<'info>,
+    fanout_for_mint_membership_voucher: &mut Account<'info, FanoutMembershipMintVoucher>,
     fanout_mint_member_token_account: &mut UncheckedAccount<'info>,
     holding_account: &mut UncheckedAccount<'info>,
     fanout: &mut Account<'info, Fanout>,
@@ -100,18 +100,6 @@ pub fn distribute_mint<'info>(
     if fanout_for_mint_object.mint != mint.to_account_info().key() {
         return Err(HydraError::MintDoesNotMatch.into());
     }
-    let fanout_for_mint_membership_voucher = &mut parse_mint_membership_voucher(
-        fanout_for_mint_membership_voucher_unchecked,
-        &rent,
-        &system_program,
-        &payer.to_account_info(),
-        membership_key,
-        &fanout_for_mint.key(),
-        &mint.key(),
-        &fanout.key(),
-        membership_voucher.stake_time,
-        fanout_for_mint_object.total_inflow,
-    )?;
     msg!("Distribute For Mint 5");
     let holding_account_ata = parse_token_account(holding_account, &fanout.key())?;
     
@@ -121,14 +109,14 @@ pub fn distribute_mint<'info>(
     update_inflow_for_mint(fanout, fanout_for_mint_object, current_snapshot)?;
     let inflow_diff = calculate_inflow_change(
         fanout_for_mint_object.total_inflow,
-        fanout_for_mint_membership_voucher.last_inflow,
+        fanout_for_mint_membership_voucher_unchecked.last_inflow,
     )?;
     msg!("Distribute For Mint 7");
     let shares = membership_voucher.shares as u64;
     let dif_dist = calculate_dist_amount(shares, inflow_diff, total_shares)?;
     update_snapshot_for_mint(
         fanout_for_mint_object,
-        fanout_for_mint_membership_voucher,
+        fanout_for_mint_membership_voucher_unchecked,
         dif_dist,
     )?;
     msg ! ( "Distribute For Mint 8" ) ;

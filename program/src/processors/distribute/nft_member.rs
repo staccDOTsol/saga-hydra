@@ -1,9 +1,8 @@
 use crate::error::HydraError;
-use crate::state::{Fanout, FanoutMembershipVoucher, MembershipModel};
-
+use crate::state::{Fanout, FanoutMembershipVoucher, MembershipModel, FanoutMembershipMintVoucher};
 use crate::utils::logic::calculation::update_fanout_for_add;
 use crate::utils::logic::distribution::{distribute_mint, distribute_native};
-use crate::state::FANOUT_MEMBERSHIP_VOUCHER_SIZE;
+use crate::state::{FANOUT_MINT_MEMBERSHIP_VOUCHER_SIZE, FANOUT_MEMBERSHIP_VOUCHER_SIZE};
 use crate::utils::validation::*;
 
 use anchor_lang::prelude::*;
@@ -49,9 +48,20 @@ pub struct DistributeNftMember<'info> {
     #[account(mut)]
     /// CHECK: Optional Account
     pub fanout_for_mint: UncheckedAccount<'info>,
-    #[account(mut)]
     /// CHECK: Optional Account
-    pub fanout_for_mint_membership_voucher: UncheckedAccount<'info>,
+    #[account(
+        init_if_needed,
+        payer = payer,
+        space = FANOUT_MINT_MEMBERSHIP_VOUCHER_SIZE,
+        seeds = [
+            b"jareout-membership",
+            fanout_for_mint.key().as_ref(),
+            membership_key.key().as_ref(),
+            fanout_mint.key().as_ref()
+        ],
+        bump
+    )]
+    pub fanout_for_mint_membership_voucher: Option<Account<'info, FanoutMembershipMintVoucher>>,
     pub fanout_mint: Account<'info, Mint>,
     #[account(mut)]
     /// CHECK: Optional Account
@@ -115,11 +125,29 @@ pub fn distribute_for_nft(
         membership_mint_token_account,
         &membership_key.to_account_info(),
     )?;
+    // if we created fanout_for_mint_membership_voucher, initialize it 
+    /*
+    
+        fanout_for_mint_membership_voucher.fanout = *fanout;
+        fanout_for_mint_membership_voucher.fanout_mint = *fanout_mint;
+        fanout_for_mint_membership_voucher.last_inflow = total_inflow;
+        fanout_for_mint_membership_voucher.stake_time = stake_time; */
     if distribute_for_mint {
+        let mut fanout_for_mint_membership_voucher: &mut Account<'_, FanoutMembershipMintVoucher> = &mut ctx.accounts.fanout_for_mint_membership_voucher.as_mut().unwrap();
+
+
+        if fanout_for_mint_membership_voucher.fanout == Pubkey::default() {
+            
+            fanout_for_mint_membership_voucher.fanout = fanout.key();
+            fanout_for_mint_membership_voucher.fanout_mint = ctx.accounts.fanout_mint.key();
+            fanout_for_mint_membership_voucher.last_inflow = fanout.total_inflow;
+            fanout_for_mint_membership_voucher.stake_time = Clock::get()?.unix_timestamp;
+        }
+    
         distribute_mint(
             ctx.accounts.fanout_mint.to_owned(),
             &mut ctx.accounts.fanout_for_mint,
-            &mut ctx.accounts.fanout_for_mint_membership_voucher,
+            &mut fanout_for_mint_membership_voucher,
             &mut ctx.accounts.fanout_mint_member_token_account,
             &mut ctx.accounts.holding_account,
             &mut ctx.accounts.fanout,

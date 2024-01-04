@@ -12,6 +12,7 @@ use state::MembershipModel;
 declare_id!("ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf");
 #[program]
 pub mod hydra {
+
     use super::*;
 
     pub fn process_init(
@@ -57,12 +58,19 @@ pub mod hydra {
         set_for_token_member_stake(ctx, shares)
     }
 
+    pub fn process_distribute_nft_nft(
+        ctx: Context<DistributeNftMemberNft>,
+    ) -> Result<()> {
+        distribute_nft_for_nft(ctx)
+    }
+
     pub fn process_distribute_nft(
         ctx: Context<DistributeNftMember>,
         distribute_for_mint: bool,
     ) -> Result<()> {
         distribute_for_nft(ctx, distribute_for_mint)
     }
+
 
     pub fn process_distribute_wallet(
         ctx: Context<DistributeWalletMember>,

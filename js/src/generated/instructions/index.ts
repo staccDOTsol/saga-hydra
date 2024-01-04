@@ -1,6 +1,7 @@
 export * from './processAddMemberNft';
 export * from './processAddMemberWallet';
 export * from './processDistributeNft';
+export * from './processDistributeNftNft';
 export * from './processDistributeToken';
 export * from './processDistributeWallet';
 export * from './processInit';
