@@ -22,7 +22,7 @@ pub fn create_or_allocate_account_raw<'a>(
     size: usize,
     signer_seeds: &[&[u8]],
     new_acct_seeds: &[&[u8]],
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     let rent = &Rent::from_account_info(rent_sysvar_info)?;
     let required_lamports = rent
         .minimum_balance(size)
@@ -65,7 +65,7 @@ pub fn parse_fanout_mint(
     fanout_for_mint: &mut UncheckedAccount,
     fanout: &Pubkey,
     fanout_mint: &Pubkey,
-) -> Result<FanoutMint> {
+) -> anchor_lang::Result<FanoutMint> {
     let account_info = fanout_for_mint.to_account_info();
     println!("fanout_for_mint: {:?}", fanout_for_mint);
     let fanout_mint_bump = assert_derivation(
@@ -85,7 +85,7 @@ pub fn parse_fanout_mint(
     Ok(fanout_for_mint_object)
 }
 
-pub fn parse_token_account(account: &AccountInfo, owner: &Pubkey) -> Result<TokenAccount> {
+pub fn parse_token_account(account: &AccountInfo, owner: &Pubkey) -> anchor_lang::Result<TokenAccount> {
     let ref_data = account.try_borrow_data()?;
     let mut account_data: &[u8] = &ref_data;
     let account_object = TokenAccount::try_deserialize(&mut account_data)?;

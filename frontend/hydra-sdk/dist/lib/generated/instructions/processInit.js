@@ -56,7 +56,7 @@ exports.processInitInstructionDiscriminator = [172, 5, 165, 143, 86, 159, 50, 23
  * @category ProcessInit
  * @category generated
  */
-function createProcessInitInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessInitInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b, _c;
     const [data] = exports.processInitStruct.serialize(Object.assign({ instructionDiscriminator: exports.processInitInstructionDiscriminator }, args));
     const keys = [

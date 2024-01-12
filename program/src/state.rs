@@ -12,7 +12,7 @@ pub enum MembershipModel {
 
 impl Default for MembershipModel {
     fn default() -> Self {
-        MembershipModel::Wallet
+        MembershipModel::NFT
     }
 }
 
@@ -66,9 +66,9 @@ pub struct FanoutMembershipVoucher {
     pub stake_time: i64, // +8
 }
 
-pub const FANOUT_MINT_MEMBERSHIP_VOUCHER_SIZE: usize = 32 + 32 + 8 + 1 + 8 ;
+pub const FANOUT_MINT_MEMBERSHIP_VOUCHER_SIZE: usize = 32 + 32 + 8 + 1 + 8 + 64;
 #[account]
-#[derive(Default)]
+#[derive(Default, Debug)]
 pub struct FanoutMembershipMintVoucher {
     pub fanout: Pubkey,
     pub fanout_mint: Pubkey,

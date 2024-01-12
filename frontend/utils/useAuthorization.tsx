@@ -7,7 +7,7 @@ import {
   Base64EncodedAddress,
   DeauthorizeAPI,
   ReauthorizeAPI,
-} from '../js/packages/mobile-wallet-adapter-protocol';
+} from '@solana-mobile/mobile-wallet-adapter-protocol';
 import {toUint8Array} from 'js-base64';
 import {useCallback, useMemo} from 'react';
 import useSWR from 'swr';

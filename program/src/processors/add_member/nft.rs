@@ -6,7 +6,7 @@ use crate::{
         logic::calculation::*,
         validation::{assert_membership_model, assert_owned_by, assert_valid_metadata},
     },
-    MembershipModel,
+    state::MembershipModel,
 };
 use anchor_lang::prelude::*;
 use anchor_spl::token::{Mint, Token};
@@ -38,7 +38,7 @@ pub struct AddMemberWithNFT<'info> {
     pub rent: Sysvar<'info, Rent>,
     pub token_program: Program<'info, Token>,
 }
-pub fn add_member_nft(ctx: Context<AddMemberWithNFT>, args: AddMemberArgs) -> Result<()> {
+pub fn add_member_nft(ctx: Context<AddMemberWithNFT>, args: AddMemberArgs)-> anchor_lang::Result<()> {
     let fanout = &mut ctx.accounts.fanout;
     let membership_account = &mut ctx.accounts.membership_account;
     let metadata = &ctx.accounts.metadata;

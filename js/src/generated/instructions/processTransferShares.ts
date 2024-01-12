@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet';
-import * as web3 from '@solana/web3.js';
+import * as beet from '@metaplex-foundation/beet'
+import * as web3 from '@solana/web3.js'
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js';
  * @category generated
  */
 export type ProcessTransferSharesInstructionArgs = {
-  shares: beet.bignum;
-};
+  shares: beet.bignum
+}
 /**
  * @category Instructions
  * @category ProcessTransferShares
@@ -23,15 +23,15 @@ export type ProcessTransferSharesInstructionArgs = {
  */
 export const processTransferSharesStruct = new beet.BeetArgsStruct<
   ProcessTransferSharesInstructionArgs & {
-    instructionDiscriminator: number[] /* size: 8 */;
+    instructionDiscriminator: number[] /* size: 8 */
   }
 >(
   [
     ['instructionDiscriminator', beet.uniformFixedSizeArray(beet.u8, 8)],
     ['shares', beet.u64],
   ],
-  'ProcessTransferSharesInstructionArgs',
-);
+  'ProcessTransferSharesInstructionArgs'
+)
 /**
  * Accounts required by the _processTransferShares_ instruction
  *
@@ -46,16 +46,18 @@ export const processTransferSharesStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type ProcessTransferSharesInstructionAccounts = {
-  authority: web3.PublicKey;
-  fromMember: web3.PublicKey;
-  toMember: web3.PublicKey;
-  fanout: web3.PublicKey;
-  fromMembershipAccount: web3.PublicKey;
-  toMembershipAccount: web3.PublicKey;
-  anchorRemainingAccounts?: web3.AccountMeta[];
-};
+  authority: web3.PublicKey
+  fromMember: web3.PublicKey
+  toMember: web3.PublicKey
+  fanout: web3.PublicKey
+  fromMembershipAccount: web3.PublicKey
+  toMembershipAccount: web3.PublicKey
+  anchorRemainingAccounts?: web3.AccountMeta[]
+}
 
-export const processTransferSharesInstructionDiscriminator = [195, 175, 36, 50, 101, 22, 28, 87];
+export const processTransferSharesInstructionDiscriminator = [
+  195, 175, 36, 50, 101, 22, 28, 87,
+]
 
 /**
  * Creates a _ProcessTransferShares_ instruction.
@@ -70,12 +72,12 @@ export const processTransferSharesInstructionDiscriminator = [195, 175, 36, 50, 
 export function createProcessTransferSharesInstruction(
   accounts: ProcessTransferSharesInstructionAccounts,
   args: ProcessTransferSharesInstructionArgs,
-  programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf'),
+  programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')
 ) {
   const [data] = processTransferSharesStruct.serialize({
     instructionDiscriminator: processTransferSharesInstructionDiscriminator,
     ...args,
-  });
+  })
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.authority,
@@ -107,11 +109,11 @@ export function createProcessTransferSharesInstruction(
       isWritable: true,
       isSigner: false,
     },
-  ];
+  ]
 
   if (accounts.anchorRemainingAccounts != null) {
     for (const acc of accounts.anchorRemainingAccounts) {
-      keys.push(acc);
+      keys.push(acc)
     }
   }
 
@@ -119,6 +121,6 @@ export function createProcessTransferSharesInstruction(
     programId,
     keys,
     data,
-  });
-  return ix;
+  })
+  return ix
 }

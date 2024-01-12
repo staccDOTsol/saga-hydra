@@ -48,21 +48,6 @@ pub struct DistributeNftMember<'info> {
     #[account(mut)]
     /// CHECK: Optional Account
     pub fanout_for_mint: UncheckedAccount<'info>,
-    /// CHECK: Optional Account
-    #[account(
-        init_if_needed,
-        payer = payer,
-        space = FANOUT_MINT_MEMBERSHIP_VOUCHER_SIZE,
-        seeds = [
-            b"jareout-membership",
-            fanout_for_mint.key().as_ref(),
-            membership_key.key().as_ref(),
-            fanout_mint.key().as_ref()
-        ],
-        bump
-    )]
-    pub fanout_for_mint_membership_voucher: Option<Account<'info, FanoutMembershipMintVoucher>>,
-    pub fanout_mint: Account<'info, Mint>,
     #[account(mut)]
     /// CHECK: Optional Account
     pub fanout_mint_member_token_account: UncheckedAccount<'info>,
@@ -72,12 +57,28 @@ pub struct DistributeNftMember<'info> {
     pub collection: Account<'info, Mint>,
     /// CHECK: Checked in program
     pub metadata: UncheckedAccount<'info>,
+    /// CHECK: Optional Account
+    /// CHECK: Optional Account
+    pub fanout_mint: Option<UncheckedAccount<'info>>,
+    #[account(
+        init_if_needed,
+        payer = payer,
+        space = FANOUT_MINT_MEMBERSHIP_VOUCHER_SIZE,
+        seeds = [
+            b"jareout-membership",
+            fanout_for_mint.key().as_ref(),
+            membership_key.key().as_ref(),
+            fanout_mint.as_ref().unwrap().key().as_ref()
+        ],
+        bump
+    )]
+    pub fanout_for_mint_membership_voucher: Option<Account<'info, FanoutMembershipMintVoucher>>,
 }
 
 pub fn distribute_for_nft(
     ctx: Context<DistributeNftMember>,
     distribute_for_mint: bool,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     let ix = anchor_lang::solana_program::system_instruction::transfer(
         &ctx.accounts.payer.key(),
         &ctx.accounts.authority.key(),
@@ -98,7 +99,7 @@ pub fn distribute_for_nft(
     let membership_mint_token_account = &ctx.accounts.membership_mint_token_account;
     let membership_key = &ctx.accounts.membership_key;
     assert_owned_by(&fanout_info, &crate::ID)?;
-    if membership_voucher.bump_seed == 0 {
+    if membership_voucher.membership_key == Pubkey::default() {
         let metadata = &ctx.accounts.metadata;
         let mint = membership_key;
         let metadata_metadata: Metadata = Metadata::from_bytes(&metadata.to_account_info().try_borrow_data()?)?;
@@ -133,22 +134,23 @@ pub fn distribute_for_nft(
         fanout_for_mint_membership_voucher.last_inflow = total_inflow;
         fanout_for_mint_membership_voucher.stake_time = stake_time; */
     if distribute_for_mint {
-        let mut fanout_for_mint_membership_voucher: &mut Account<'_, FanoutMembershipMintVoucher> = &mut ctx.accounts.fanout_for_mint_membership_voucher.as_mut().unwrap();
+        let fanout_for_mint_membership_voucher = &mut ctx.accounts.fanout_for_mint_membership_voucher.as_mut().unwrap();
 
         msg!("distribute for mint");
-        if fanout_for_mint_membership_voucher.fanout != fanout.key() {
+        if fanout_for_mint_membership_voucher.fanout == Pubkey::default() {
             msg!("fanout_for_mint_membership_voucher.fanout != fanout.key()");
             
             fanout_for_mint_membership_voucher.fanout = fanout.key();
-            fanout_for_mint_membership_voucher.fanout_mint = ctx.accounts.fanout_mint.key();
+            fanout_for_mint_membership_voucher.fanout_mint = ctx.accounts.fanout_mint.as_ref().unwrap().key();
             fanout_for_mint_membership_voucher.last_inflow = fanout.total_inflow;
             fanout_for_mint_membership_voucher.stake_time = Clock::get()?.unix_timestamp;
         }
     
+        
         distribute_mint(
-            ctx.accounts.fanout_mint.to_owned(),
+            ctx.accounts.fanout_mint.as_ref().unwrap().to_owned(),
             &mut ctx.accounts.fanout_for_mint,
-            &mut fanout_for_mint_membership_voucher,
+             fanout_for_mint_membership_voucher,
             &mut ctx.accounts.fanout_mint_member_token_account,
             &mut ctx.accounts.holding_account,
             &mut ctx.accounts.fanout,

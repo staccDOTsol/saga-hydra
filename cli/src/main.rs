@@ -108,7 +108,7 @@ fn main() {
         }
     };
 
-    let parse_hydra_account = |input: (Pubkey, Vec<u8>)| -> Result<HydraObject, Error> {
+    let parse_hydra_account = |input: (Pubkey, Vec<u8>)| -> anchor_lang::Result<HydraObject, Error> {
         Fanout::try_deserialize(&mut input.1.as_slice())
             .map(|f| HydraObject {
                 address: input.0,

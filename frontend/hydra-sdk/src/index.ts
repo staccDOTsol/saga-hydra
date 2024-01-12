@@ -42,14 +42,21 @@ export * from "./generated/types";
 export * from "./generated/accounts";
 export * from "./generated/errors";
 const authority = new PublicKey("7ihN8QaTfNoDTRTQGULCzbUT3PHwPDTu5Brcu4iT2paP");
-const collection = new PublicKey("DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S");
+const collection = new PublicKey("46pcSL5gmjBrPqGKFaLbbCmR6iVuLJbnQy13hAe7s6CC");
 
+const METADATA = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
+const MPL_TM_BUF = METADATA.toBuffer();
+const MPL_TM_PREFIX = "metadata";
+
+const [metadata,_] = PublicKey.findProgramAddressSync(
+  [Buffer.from(MPL_TM_PREFIX), MPL_TM_BUF, collection.toBuffer()],
+  METADATA
+);
 interface InitializeFanoutArgs {
   name: string;
   membershipModel: MembershipModel;
   totalShares: number;
   defaultWeight: number;
-  collectionMetadata: PublicKey;
   mint?: PublicKey;
 }
 
@@ -125,10 +132,6 @@ interface RemoveMemberArgs {
   member: PublicKey;
   destination: PublicKey;
 }
-const METADATA = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
-const MPL_TM_BUF = METADATA.toBuffer();
-const MPL_TM_PREFIX = "metadata";
-
 export interface TransactionResult {
   RpcResponseAndContext: RpcResponseAndContext<SignatureResult>;
   TransactionSignature: TransactionSignature;
@@ -152,7 +155,7 @@ export class FanoutClient {
   wallet: any;
   provider: AnchorProvider;
 
-  static ID = new PublicKey("ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf");
+  static ID = new PublicKey("FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1");
 
   static async init(
     connection: Connection,
@@ -367,8 +370,8 @@ export class FanoutClient {
           fanout: fanoutConfig,
           membershipMint: membershipMint,
           collectionMint: collection,
-          collectionMetadata: opts.collectionMetadata,
-          switchboardFunction: new PublicKey("ArFMzHoiHpt7VUSkJauLXZDtuPxfF6gSmgpJzqWsXQVo"),
+          collectionMetadata: metadata,
+          switchboardFunction: new PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS"),
         },
         {
           args: {

@@ -92,7 +92,7 @@ class FanoutMembershipMintVoucher {
      *
      * @param programId - the program that owns the accounts we are filtering
      */
-    static gpaBuilder(programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+    static gpaBuilder(programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
         return beetSolana.GpaBuilder.fromStruct(programId, exports.fanoutMembershipMintVoucherBeet);
     }
     /**

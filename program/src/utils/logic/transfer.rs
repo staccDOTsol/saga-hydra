@@ -8,7 +8,7 @@ pub fn transfer_from_mint_holding<'info>(
     source: AccountInfo<'info>,
     dest: AccountInfo<'info>,
     amount: u64,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     if amount > 0 {
         let cpi_program = token_program;
         let accounts = anchor_spl::token::Transfer {
@@ -33,7 +33,7 @@ pub fn transfer_native<'info>(
     dest: AccountInfo<'info>,
     current_snapshot: u64,
     amount: u64,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     if amount > 0 {
         **source.lamports.borrow_mut() = current_snapshot
             .checked_sub(amount)

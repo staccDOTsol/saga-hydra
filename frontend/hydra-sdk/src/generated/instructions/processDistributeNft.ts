@@ -95,7 +95,7 @@ export const processDistributeNftInstructionDiscriminator = [108, 240, 68, 81, 1
 export function createProcessDistributeNftInstruction(
   accounts: ProcessDistributeNftInstructionAccounts,
   args: ProcessDistributeNftInstructionArgs,
-  programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf'),
+  programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1'),
 ) {
   const [data] = processDistributeNftStruct.serialize({
     instructionDiscriminator: processDistributeNftInstructionDiscriminator,

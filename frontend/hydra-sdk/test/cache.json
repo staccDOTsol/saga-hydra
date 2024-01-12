@@ -1,0 +1,50 @@
+{
+  "program": {
+    "candyMachine": "6RQSnGgCD7Hy62XtUJ3zkR1svipbJgmV8aG2DfsXaQPg",
+    "candyGuard": "",
+    "candyMachineCreator": "7HQMHVbhuifvhPwpvdXQr2Hryt2oveLVpdtmSsE9Em9b",
+    "collectionMint": "46pcSL5gmjBrPqGKFaLbbCmR6iVuLJbnQy13hAe7s6CC"
+  },
+  "items": {
+    "-1": {
+      "name": "Saga genesis token",
+      "image_hash": "52eefaf4ac1607f900b390f6d6866ff0b31f6fbcea749e049461fa9e0aaa1991",
+      "image_link": "https://updg8.com/imgdata/SgbwYCL3W5tFKXgzTUgqgK3jjnrj2KRgTgikN2CtVvv",
+      "metadata_hash": "8ff3ab46cba221cd234befd4441cd8f52c49aa262463ebde960914b96112eafd",
+      "metadata_link": "https://arweave.net/h64hoxXzFLNI6gb762CMQL3K6-ZH8icn7GDqP-vaU0o",
+      "onChain": true
+    },
+    "0": {
+      "name": "Saga genesis token",
+      "image_hash": "52eefaf4ac1607f900b390f6d6866ff0b31f6fbcea749e049461fa9e0aaa1991",
+      "image_link": "https://updg8.com/imgdata/SgbwYCL3W5tFKXgzTUgqgK3jjnrj2KRgTgikN2CtVvv",
+      "metadata_hash": "d3715d811c7624f5c4c2286aee4fab2141335fdffae14169751a3f4093a8f0c8",
+      "metadata_link": "https://arweave.net/9uX_4GuA7by_ERiTjJichjIAgu-gjjjXyiGAfK_a1gs",
+      "onChain": true
+    },
+    "1": {
+      "name": "Saga genesis token",
+      "image_hash": "52eefaf4ac1607f900b390f6d6866ff0b31f6fbcea749e049461fa9e0aaa1991",
+      "image_link": "https://updg8.com/imgdata/SgbwYCL3W5tFKXgzTUgqgK3jjnrj2KRgTgikN2CtVvv",
+      "metadata_hash": "d3715d811c7624f5c4c2286aee4fab2141335fdffae14169751a3f4093a8f0c8",
+      "metadata_link": "https://arweave.net/0AYHkqfX-X_wWTh9BuKMDAZj3bJ-QzLrSybyPqJkGTU",
+      "onChain": true
+    },
+    "2": {
+      "name": "Saga genesis token",
+      "image_hash": "52eefaf4ac1607f900b390f6d6866ff0b31f6fbcea749e049461fa9e0aaa1991",
+      "image_link": "https://updg8.com/imgdata/SgbwYCL3W5tFKXgzTUgqgK3jjnrj2KRgTgikN2CtVvv",
+      "metadata_hash": "d3715d811c7624f5c4c2286aee4fab2141335fdffae14169751a3f4093a8f0c8",
+      "metadata_link": "https://arweave.net/euSuPsNCtRC2ZxDTZziutY1W13wHEr9DuNMxwRAr0lo",
+      "onChain": true
+    },
+    "3": {
+      "name": "Saga genesis token",
+      "image_hash": "52eefaf4ac1607f900b390f6d6866ff0b31f6fbcea749e049461fa9e0aaa1991",
+      "image_link": "https://updg8.com/imgdata/SgbwYCL3W5tFKXgzTUgqgK3jjnrj2KRgTgikN2CtVvv",
+      "metadata_hash": "8ff3ab46cba221cd234befd4441cd8f52c49aa262463ebde960914b96112eafd",
+      "metadata_link": "https://arweave.net/ez7O2ZODLbW3Ri7KmxSYpRIYjYbg4vm6Z8oiJGnu-7Q",
+      "onChain": true
+    }
+  }
+}

@@ -58,7 +58,7 @@ exports.processDistributeNftInstructionDiscriminator = [108, 240, 68, 81, 144, 8
  * @category ProcessDistributeNft
  * @category generated
  */
-function createProcessDistributeNftInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessDistributeNftInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b, _c;
     const [data] = exports.processDistributeNftStruct.serialize(Object.assign({ instructionDiscriminator: exports.processDistributeNftInstructionDiscriminator }, args));
     const keys = [

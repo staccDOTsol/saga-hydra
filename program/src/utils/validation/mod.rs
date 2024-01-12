@@ -18,7 +18,7 @@ pub fn assert_derivation(
     account: &AccountInfo,
     path: &[&[u8]],
     error: Option<error::Error>,
-) -> Result<u8> {
+) -> anchor_lang::Result<u8> {
     let (key, bump) = Pubkey::find_program_address(path, program_id);
     if !cmp_pubkeys(&key, account.key) {
         if let Some(err) = error {
@@ -31,7 +31,7 @@ pub fn assert_derivation(
     Ok(bump)
 }
 
-pub fn assert_owned_by(account: &AccountInfo, owner: &Pubkey) -> Result<()> {
+pub fn assert_owned_by(account: &AccountInfo, owner: &Pubkey)-> anchor_lang::Result<()> {
     if !cmp_pubkeys(account.owner, owner) {
         Err(HydraError::IncorrectOwner.into())
     } else {
@@ -39,7 +39,7 @@ pub fn assert_owned_by(account: &AccountInfo, owner: &Pubkey) -> Result<()> {
     }
 }
 
-pub fn assert_membership_model(fanout: &Account<Fanout>, model: MembershipModel) -> Result<()> {
+pub fn assert_membership_model(fanout: &Account<Fanout>, model: MembershipModel)-> anchor_lang::Result<()> {
     if fanout.membership_model != model {
         return Err(HydraError::InvalidMembershipModel.into());
     }
@@ -51,7 +51,7 @@ pub fn assert_ata(
     target: &Pubkey,
     mint: &Pubkey,
     err: Option<error::Error>,
-) -> Result<u8> {
+) -> anchor_lang::Result<u8> {
     assert_derivation(
         &anchor_spl::associated_token::ID,
         &account.to_account_info(),
@@ -64,7 +64,7 @@ pub fn assert_ata(
     )
 }
 
-pub fn assert_shares_distributed(fanout: &Account<Fanout>) -> Result<()> {
+pub fn assert_shares_distributed(fanout: &Account<Fanout>)-> anchor_lang::Result<()> {
     if fanout.total_available_shares != 0 {
         return Err(HydraError::SharesArentAtMax.into());
     }
@@ -75,7 +75,7 @@ pub fn assert_holding(
     owner: &AccountInfo,
     token_account: &Account<TokenAccount>,
     mint_info: &AccountInfo,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     assert_owned_by(mint_info, &spl_token::id())?;
     let token_account_info = token_account.to_account_info();
     assert_owned_by(&token_account_info, &spl_token::id())?;
@@ -95,7 +95,7 @@ pub fn assert_distributed(
     ix: Instruction,
     subject: &Pubkey,
     membership_model: MembershipModel,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     if !cmp_pubkeys(&ix.program_id, &crate::id()) {
         return Err(HydraError::MustDistribute.into());
     }
@@ -116,7 +116,7 @@ pub fn assert_distributed(
 pub fn assert_valid_metadata(
     metadata_account: &AccountInfo,
     mint: &AccountInfo,
-) -> Result<Metadata> {
+) -> anchor_lang::Result<Metadata> {
     let meta = Metadata::from_bytes(&metadata_account.try_borrow_data()?)?;
     if !cmp_pubkeys(&meta.mint, mint.key) {
         return Err(HydraError::InvalidMetadata.into());
@@ -124,7 +124,7 @@ pub fn assert_valid_metadata(
     Ok(meta)
 }
 
-pub fn assert_owned_by_one(account: &AccountInfo, owners: Vec<&Pubkey>) -> Result<()> {
+pub fn assert_owned_by_one(account: &AccountInfo, owners: Vec<&Pubkey>)-> anchor_lang::Result<()> {
     for o in owners {
         let res = assert_owned_by(account, o);
         if res.is_ok() {

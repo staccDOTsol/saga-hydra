@@ -1,7 +1,8 @@
 use crate::{
     state::{Fanout, FanoutMembershipVoucher},
     utils::{logic::calculation::*, validation::assert_owned_by},
-    MembershipModel,
+  
+    state::MembershipModel,
 };
 use anchor_lang::prelude::*;
 
@@ -32,7 +33,7 @@ pub struct RemoveMember<'info> {
     pub destination: UncheckedAccount<'info>,
 }
 
-pub fn remove_member(ctx: Context<RemoveMember>) -> Result<()> {
+pub fn remove_member(ctx: Context<RemoveMember>)-> anchor_lang::Result<()> {
     let member_voucher = &ctx.accounts.membership_account;
     let fanout = &mut ctx.accounts.fanout;
     assert_owned_by(&fanout.to_account_info(), &crate::ID)?;

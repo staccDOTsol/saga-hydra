@@ -52,7 +52,7 @@ exports.processInitForMintInstructionDiscriminator = [140, 150, 232, 195, 93, 21
  * @category ProcessInitForMint
  * @category generated
  */
-function createProcessInitForMintInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessInitForMintInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b;
     const [data] = exports.processInitForMintStruct.serialize(Object.assign({ instructionDiscriminator: exports.processInitForMintInstructionDiscriminator }, args));
     const keys = [

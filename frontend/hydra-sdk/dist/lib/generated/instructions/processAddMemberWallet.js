@@ -54,7 +54,7 @@ exports.processAddMemberWalletInstructionDiscriminator = [201, 9, 59, 128, 69, 1
  * @category ProcessAddMemberWallet
  * @category generated
  */
-function createProcessAddMemberWalletInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessAddMemberWalletInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b, _c;
     const [data] = exports.processAddMemberWalletStruct.serialize(Object.assign({ instructionDiscriminator: exports.processAddMemberWalletInstructionDiscriminator }, args));
     const keys = [

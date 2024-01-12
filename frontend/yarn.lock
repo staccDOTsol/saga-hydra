@@ -266,7 +266,7 @@
     chalk "^2.4.2"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.13.16", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.7", "@babel/parser@^7.22.15", "@babel/parser@^7.23.6":
+"@babel/parser@^7.1.0", "@babel/parser@^7.13.16", "@babel/parser@^7.14.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.7", "@babel/parser@^7.22.15", "@babel/parser@^7.23.6":
   version "7.23.6"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.23.6.tgz#ba1c9e512bda72a47e285ae42aff9d2a635a9e3b"
   integrity sha512-Z2uID7YJ7oNvAI20O9X0bblw7Qqs8Q2hFy0R9tAfnfLkp5MW0UH9eUvnDSnFwKZ0AvgS1ucqR4KzvVHgnke1VQ==
@@ -1114,7 +1114,7 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.5", "@babel/runtime@^7.17.2", "@babel/runtime@^7.20.0", "@babel/runtime@^7.23.2", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.5", "@babel/runtime@^7.17.2", "@babel/runtime@^7.20.0", "@babel/runtime@^7.23.4", "@babel/runtime@^7.8.4":
   version "7.23.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.7.tgz#dd7c88deeb218a0f8bd34d5db1aa242e0f203193"
   integrity sha512-w06OXVOFso7LcbzMiDGt+3X7Rh7Ho8MmgPoWU3rarH+8upf+wSU/grlGbWzQyr3DkdN6ZeuMFjpdwW0Q+HxobA==
@@ -1573,7 +1573,7 @@
   dependencies:
     "@noble/hashes" "1.3.3"
 
-"@noble/hashes@1.3.3", "@noble/hashes@^1.3.1":
+"@noble/hashes@1.3.3", "@noble/hashes@^1.3.1", "@noble/hashes@^1.3.2":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.3.3.tgz#39908da56a4adc270147bb07968bf3b16cfe1699"
   integrity sha512-V7/fPHgl+jsVPXqqeOzT8egNj2iBIVt+ECeMMG8TdcnTikP3oaBtUVqpT/gYCR68aEBJSF+XbYUxStjbFMqIIA==
@@ -1823,11 +1823,11 @@
   integrity sha512-2FgAbU7uKM5SbbW9QptPPZx8N9Ke2L7bsHb+EhAanZjFZunA9PaYtyjUQ1s7HD+zDVqOQIvjkpXSv7Kejd2tqg==
 
 "@react-native/babel-plugin-codegen@*":
-  version "0.74.0"
-  resolved "https://registry.yarnpkg.com/@react-native/babel-plugin-codegen/-/babel-plugin-codegen-0.74.0.tgz#01ba90840e23c6d1fbf739f75cce1d0f5be97bfa"
-  integrity sha512-xAM/eVSb5LBkKue3bDZgt76bdsGGzKeF/iEzUNbDTwRQrB3Q5GoceGNM/zVlF+z1xGAkr3jhL+ZyITZGSoIlgw==
+  version "0.71.3"
+  resolved "https://registry.yarnpkg.com/@react-native/babel-plugin-codegen/-/babel-plugin-codegen-0.71.3.tgz#9f5b16336a9e7c365f3de04103c84abd3d2868ce"
+  integrity sha512-udPH9oWVTO0q7OJL672k7pmBzMA7Ei83hQwk/dxUlveTwjHz1ChHwMXhDJBhG/dNFijl9wcHrD1aXrI8WchZQg==
   dependencies:
-    "@react-native/codegen" "*"
+    react-native-codegen "0.71.6"
 
 "@react-native/babel-preset@*":
   version "0.74.0"
@@ -1924,19 +1924,6 @@
     "@react-native/babel-plugin-codegen" "*"
     babel-plugin-transform-flow-enums "^0.0.2"
     react-refresh "^0.14.0"
-
-"@react-native/codegen@*":
-  version "0.72.8"
-  resolved "https://registry.yarnpkg.com/@react-native/codegen/-/codegen-0.72.8.tgz#0593f628e1310f430450a9479fbb4be35e7b63d6"
-  integrity sha512-jQCcBlXV7B7ap5VlHhwIPieYz89yiRgwd2FPUBu+unz+kcJ6pAiB2U8RdLDmyIs8fiWd+Vq1xxaWs4TR329/ng==
-  dependencies:
-    "@babel/parser" "^7.20.0"
-    flow-parser "^0.206.0"
-    glob "^7.1.1"
-    invariant "^2.2.4"
-    jscodeshift "^0.14.0"
-    mkdirp "^0.5.1"
-    nullthrows "^1.1.1"
 
 "@react-native/codegen@^0.73.2":
   version "0.73.2"
@@ -2141,29 +2128,34 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@solana-mobile/mobile-wallet-adapter-protocol-web3js@^2.0.1", "@solana-mobile/mobile-wallet-adapter-protocol-web3js@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@solana-mobile/mobile-wallet-adapter-protocol-web3js/-/mobile-wallet-adapter-protocol-web3js-2.0.2.tgz#ddbeee32004b0712cc5a396d9f79ec9a568efbeb"
-  integrity sha512-z1KKJb5v4thNvpncQlohfDpWLCmelEMRtJpmLjocSIUCuy88yLJZ0+LXvFMWP+cdCoakEctI2vH8XAUifxPFBg==
+"@solana-mobile/mobile-wallet-adapter-protocol-web3js@^2.0.2", "@solana-mobile/mobile-wallet-adapter-protocol-web3js@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@solana-mobile/mobile-wallet-adapter-protocol-web3js/-/mobile-wallet-adapter-protocol-web3js-2.0.3.tgz#8eeb12eee39ab997a9fd5fcd61ba8092ceeb86f3"
+  integrity sha512-T+aX+M4MEtM9B8ecWbt6Ueuj9RuUF4bVO1r6k7OeV0P6xhdqkblKOM9WsTmo+gSddSc6X1x8w4C9Dvyh93Ogbg==
   dependencies:
     "@solana-mobile/mobile-wallet-adapter-protocol" "^2.0.1"
     bs58 "^5.0.0"
     js-base64 "^3.7.2"
 
 "@solana-mobile/mobile-wallet-adapter-protocol@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@solana-mobile/mobile-wallet-adapter-protocol/-/mobile-wallet-adapter-protocol-2.0.1.tgz#8052d3ad1f62c750862c4c624880890f7d045bd5"
-  integrity sha512-UddhYILR886o7q/ZcEBu+CCix9Ns1hNIidTQKkecbz4FeJoO5rARhRuPwFbYoaBlCKvjmg0CkWlVwW3bVu+qJQ==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@solana-mobile/mobile-wallet-adapter-protocol/-/mobile-wallet-adapter-protocol-2.0.2.tgz#a4186054dbe0a5453e21ca52ebb4deda46c2f2bc"
+  integrity sha512-UbDICKE5NFM8BePy8oKSWpO+7F8zU2We8rQOSKrmY9T/7lnrkv0KFT3ytbmYa9mE65cxAOhrVPkSv/louSam1w==
+  dependencies:
+    "@solana/wallet-standard-util" "^1.1.1"
+    js-base64 "^3.7.5"
 
 "@solana-mobile/wallet-adapter-mobile@^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@solana-mobile/wallet-adapter-mobile/-/wallet-adapter-mobile-2.0.1.tgz#1f36b56013c5bd016a4c846b1c00b31452083139"
-  integrity sha512-QIM8nqVRmv8yEsTEfMbzWH7NoVVC6F417Z/tf6FpOVn1N6MqiZc5kvajsaRJKXrHzi5r5023SKErjg9LjZshXw==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@solana-mobile/wallet-adapter-mobile/-/wallet-adapter-mobile-2.0.3.tgz#e1ad0e2361f39eb7ca95b0c541c8ab5bb3d8ebeb"
+  integrity sha512-4RrBTZyMTxuIZevRhS++WNX2hxrF2uPl3wIqMz2k6KK5Bwk5F5DAyVwyg1N27XaABu7k+YjdhoMqXDIp9XA9zw==
   dependencies:
-    "@react-native-async-storage/async-storage" "^1.17.7"
-    "@solana-mobile/mobile-wallet-adapter-protocol-web3js" "^2.0.1"
-    "@solana/wallet-adapter-base" "^0.9.17"
+    "@solana-mobile/mobile-wallet-adapter-protocol-web3js" "^2.0.3"
+    "@solana/wallet-adapter-base" "^0.9.23"
+    "@solana/wallet-standard-features" "^1.1.0"
     js-base64 "^3.7.2"
+  optionalDependencies:
+    "@react-native-async-storage/async-storage" "^1.17.7"
 
 "@solana/buffer-layout-utils@^0.2.0":
   version "0.2.0"
@@ -2175,7 +2167,7 @@
     bigint-buffer "^1.1.5"
     bignumber.js "^9.0.1"
 
-"@solana/buffer-layout@^4.0.0":
+"@solana/buffer-layout@^4.0.0", "@solana/buffer-layout@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@solana/buffer-layout/-/buffer-layout-4.0.1.tgz#b996235eaec15b1e0b5092a8ed6028df77fa6c15"
   integrity sha512-E1ImOIAD1tBZFRdjeM4/pzTiTApC0AOBGwyAMS4fwIodCWArzJ3DWdoh8cKxeFM2fElkxBh2Aqts1BPC373rHA==
@@ -2259,7 +2251,7 @@
   dependencies:
     buffer "^6.0.3"
 
-"@solana/wallet-adapter-base@^0.9.17", "@solana/wallet-adapter-base@^0.9.23":
+"@solana/wallet-adapter-base@^0.9.23":
   version "0.9.23"
   resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.23.tgz#3b17c28afd44e173f44f658bf9700fd637e12a11"
   integrity sha512-apqMuYwFp1jFi55NxDfvXUX2x1T0Zh07MxhZ/nCCTGys5raSfYUh82zen2BLv8BSDj/JxZ2P/s7jrQZGrX8uAw==
@@ -2326,15 +2318,15 @@
     "@wallet-standard/base" "^1.0.1"
 
 "@solana/web3.js@^1.12.0", "@solana/web3.js@^1.32.0", "@solana/web3.js@^1.68.0", "@solana/web3.js@^1.87.6":
-  version "1.87.6"
-  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.87.6.tgz#6744cfc5f4fc81e0f58241c0a92648a7320bb3bf"
-  integrity sha512-LkqsEBgTZztFiccZZXnawWa8qNCATEqE97/d0vIwjTclmVlc8pBpD1DmjfVHtZ1HS5fZorFlVhXfpwnCNDZfyg==
+  version "1.88.0"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.88.0.tgz#24e1482f63ac54914430b4ce5ab36eaf433ecdb8"
+  integrity sha512-E4BdfB0HZpb66OPFhIzPApNE2tG75Mc6XKIoeymUkx/IV+USSYuxDX29sjgE/KGNYxggrOf4YuYnRMI6UiPL8w==
   dependencies:
-    "@babel/runtime" "^7.23.2"
+    "@babel/runtime" "^7.23.4"
     "@noble/curves" "^1.2.0"
-    "@noble/hashes" "^1.3.1"
-    "@solana/buffer-layout" "^4.0.0"
-    agentkeepalive "^4.3.0"
+    "@noble/hashes" "^1.3.2"
+    "@solana/buffer-layout" "^4.0.1"
+    agentkeepalive "^4.5.0"
     bigint-buffer "^1.1.5"
     bn.js "^5.2.1"
     borsh "^0.7.0"
@@ -2342,7 +2334,7 @@
     buffer "6.0.3"
     fast-stable-stringify "^1.0.0"
     jayson "^4.1.0"
-    node-fetch "^2.6.12"
+    node-fetch "^2.7.0"
     rpc-websockets "^7.5.1"
     superstruct "^0.14.2"
 
@@ -2670,7 +2662,7 @@ acorn@^8.8.2, acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.11.3.tgz#71e0b14e13a4ec160724b38fb7b0f233b1b81d7a"
   integrity sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==
 
-agentkeepalive@^4.3.0:
+agentkeepalive@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/agentkeepalive/-/agentkeepalive-4.5.0.tgz#2673ad1389b3c418c5a20c5d7364f93ca04be923"
   integrity sha512-5GG/5IbQQpC9FpkRGsSvZI5QYeSCzlJHdpBQntCsuTOxhKD8lqKhrleg2Yi7yvMIf82Ycmmqln9U8V9qwEiJew==
@@ -3311,9 +3303,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001565:
-  version "1.0.30001572"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001572.tgz#1ccf7dc92d2ee2f92ed3a54e11b7b4a3041acfa0"
-  integrity sha512-1Pbh5FLmn5y4+QhNyJE9j3/7dK44dGB83/ZMjv/qJk86TvDbjk0LosiZo0i0WB0Vx607qMX9jYrn1VLHCkN4rw==
+  version "1.0.30001574"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001574.tgz#fb4f1359c77f6af942510493672e1ec7ec80230c"
+  integrity sha512-BtYEK4r/iHt/txm81KBudCUcTy7t+s9emrIaHqjYurQ10x71zJ5VQ9x1dYPcz/b+pKSp4y/v1xSI67A+LzpNyg==
 
 chalk@^2.4.2:
   version "2.4.2"
@@ -3858,9 +3850,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.601:
-  version "1.4.618"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.618.tgz#98899b3c78495157cc2fe4944316f686939a435d"
-  integrity sha512-mTM2HieHLxs1RbD/R/ZoQLMsGI8lWIkP17G7cx32mJRBJt9wlNPkXwE3sYg/OnNb5GBkus98lXatSthoL8Y5Ag==
+  version "1.4.623"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.623.tgz#0f7400114ac3425500e9244d2b0e9c3107c331cb"
+  integrity sha512-lKoz10iCYlP1WtRYdh5MvocQPWVRoI7ysp6qf18bmeBgR8abE6+I2CsfyNKztRDZvhdWc+krKT6wS7Neg8sw3A==
 
 elliptic@^6.5.3, elliptic@^6.5.4:
   version "6.5.4"
@@ -4469,6 +4461,11 @@ flow-parser@0.*:
   version "0.225.1"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.225.1.tgz#78f16d90c724bfa2149acf5e129bc5a85fc82988"
   integrity sha512-50fjR6zbLQcpq5IFNkheUSY/AFPxVeeLiBM5B3NQBSKId2G0cUuExOlDDOguxc49dl9lnh8hI1xcYlPJWNp4KQ==
+
+flow-parser@^0.185.0:
+  version "0.185.2"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.185.2.tgz#cb7ee57f77377d6c5d69a469e980f6332a15e492"
+  integrity sha512-2hJ5ACYeJCzNtiVULov6pljKOLygy0zddoqSI1fFetM+XRPpRshFdGEijtqlamA1XwyZ+7rhryI6FQFzvtLWUQ==
 
 flow-parser@^0.206.0:
   version "0.206.0"
@@ -5611,7 +5608,7 @@ joi@^17.2.1:
     "@sideway/formula" "^3.0.1"
     "@sideway/pinpoint" "^2.0.0"
 
-js-base64@^3.7.2:
+js-base64@^3.7.2, js-base64@^3.7.5:
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-3.7.5.tgz#21e24cf6b886f76d6f5f165bfcd69cc55b9e3fca"
   integrity sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==
@@ -6270,7 +6267,7 @@ node-fetch@^1.0.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.2.0, node-fetch@^2.6.0, node-fetch@^2.6.12:
+node-fetch@^2.2.0, node-fetch@^2.6.0, node-fetch@^2.6.12, node-fetch@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
   integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==
@@ -6846,6 +6843,16 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-native-codegen@0.71.6:
+  version "0.71.6"
+  resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.71.6.tgz#481a610c3af9135b09e1e031da032e7270e0cc1b"
+  integrity sha512-e5pR4VldIhEaFctfSAEgxbng0uG4gjBQxAHes3EKLdosH/Av90pQfSe9IDVdFIngvNPzt8Y14pNjrtqov/yNIg==
+  dependencies:
+    "@babel/parser" "^7.14.0"
+    flow-parser "^0.185.0"
+    jscodeshift "^0.14.0"
+    nullthrows "^1.1.1"
 
 react-native-crypto@^2.2.0:
   version "2.2.0"

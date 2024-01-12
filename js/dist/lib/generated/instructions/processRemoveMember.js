@@ -47,7 +47,7 @@ exports.processRemoveMemberInstructionDiscriminator = [9, 45, 36, 163, 245, 40, 
  * @category ProcessRemoveMember
  * @category generated
  */
-function createProcessRemoveMemberInstruction(accounts, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessRemoveMemberInstruction(accounts, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     const [data] = exports.processRemoveMemberStruct.serialize({
         instructionDiscriminator: exports.processRemoveMemberInstructionDiscriminator,
     });

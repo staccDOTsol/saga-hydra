@@ -55,7 +55,7 @@ exports.processSetTokenMemberStakeInstructionDiscriminator = [
  * @category ProcessSetTokenMemberStake
  * @category generated
  */
-function createProcessSetTokenMemberStakeInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessSetTokenMemberStakeInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b;
     const [data] = exports.processSetTokenMemberStakeStruct.serialize(Object.assign({ instructionDiscriminator: exports.processSetTokenMemberStakeInstructionDiscriminator }, args));
     const keys = [

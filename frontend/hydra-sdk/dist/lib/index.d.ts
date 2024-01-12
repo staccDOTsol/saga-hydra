@@ -1,8 +1,7 @@
 /// <reference types="node" />
-import { AnchorProvider } from "@project-serum/anchor";
+import { AnchorProvider } from "@coral-xyz/anchor";
 import { AccountInfo, Connection, Finality, PublicKey, RpcResponseAndContext, SignatureResult, Signer, Transaction, TransactionInstruction, TransactionSignature } from "@solana/web3.js";
 import { MembershipModel } from "./generated/types";
-import { BigInstructionResult, InstructionResult } from "@strata-foundation/spl-utils";
 export * from "./generated/types";
 export * from "./generated/accounts";
 export * from "./generated/errors";
@@ -78,17 +77,17 @@ export interface Wallet {
 }
 export declare class FanoutClient {
     connection: Connection;
-    wallet: Wallet;
+    wallet: any;
     provider: AnchorProvider;
     static ID: PublicKey;
-    static init(connection: Connection, wallet: Wallet): Promise<FanoutClient>;
-    constructor(connection: Connection, wallet: Wallet);
+    static init(connection: Connection, wallet: any): Promise<FanoutClient>;
+    constructor(connection: Connection, wallet: any);
     fetch<T>(key: PublicKey, type: any): Promise<T>;
     getAccountInfo(key: PublicKey): Promise<AccountInfo<Buffer>>;
     getMembers({ fanout }: {
         fanout: PublicKey;
     }): Promise<PublicKey[]>;
-    executeBig<Output>(command: Promise<BigInstructionResult<Output>>, payer?: PublicKey, finality?: Finality): Promise<Output>;
+    executeBig<Output>(command: Promise<any>, payer?: PublicKey, finality?: Finality): Promise<Output>;
     sendInstructions(instructions: TransactionInstruction[], signers: Signer[], payer?: PublicKey): Promise<TransactionResult>;
     private throwingSend;
     static fanoutKey(name: String, programId?: PublicKey): Promise<[PublicKey, number]>;
@@ -97,51 +96,17 @@ export declare class FanoutClient {
     static mintMembershipVoucher(fanoutForMintConfig: PublicKey, membershipKey: PublicKey, fanoutMint: PublicKey, programId?: PublicKey): Promise<[PublicKey, number]>;
     static freezeAuthority(mint: PublicKey, programId?: PublicKey): Promise<[PublicKey, number]>;
     static nativeAccount(fanoutAccountKey: PublicKey, programId?: PublicKey): Promise<[PublicKey, number]>;
-    initializeFanoutInstructions(opts: InitializeFanoutArgs): Promise<InstructionResult<{
-        fanout: PublicKey;
-        nativeAccount: PublicKey;
-    }>>;
-    initializeFanoutForMintInstructions(opts: InitializeFanoutForMintArgs): Promise<InstructionResult<{
-        fanoutForMint: PublicKey;
-        tokenAccount: PublicKey;
-    }>>;
-    addMemberWalletInstructions(opts: AddMemberArgs): Promise<InstructionResult<{
-        membershipAccount: PublicKey;
-    }>>;
-    addMemberNftInstructions(opts: AddMemberArgs): Promise<InstructionResult<{
-        membershipAccount: PublicKey;
-    }>>;
-    unstakeTokenMemberInstructions(opts: UnstakeMemberArgs): Promise<InstructionResult<{
-        membershipVoucher: PublicKey;
-        membershipMintTokenAccount: PublicKey;
-        stakeAccount: PublicKey;
-    }>>;
-    stakeForTokenMemberInstructions(opts: StakeMemberArgs): Promise<InstructionResult<{
-        membershipVoucher: PublicKey;
-        membershipMintTokenAccount: PublicKey;
-        stakeAccount: PublicKey;
-    }>>;
-    stakeTokenMemberInstructions(opts: StakeMemberArgs): Promise<InstructionResult<{
-        membershipVoucher: PublicKey;
-        membershipMintTokenAccount: PublicKey;
-        stakeAccount: PublicKey;
-    }>>;
-    distributeTokenMemberInstructions(opts: DistributeTokenMemberArgs): Promise<InstructionResult<{
-        membershipVoucher: PublicKey;
-        fanoutForMintMembershipVoucher?: PublicKey;
-        holdingAccount: PublicKey;
-    }>>;
-    distributeNftMemberInstructions(opts: DistributeMemberArgs): Promise<InstructionResult<{
-        membershipVoucher: PublicKey;
-        fanoutForMintMembershipVoucher?: PublicKey;
-        holdingAccount: PublicKey;
-    }>>;
-    distributeWalletMemberInstructions(opts: DistributeMemberArgs): Promise<InstructionResult<{
-        membershipVoucher: PublicKey;
-        fanoutForMintMembershipVoucher?: PublicKey;
-        holdingAccount: PublicKey;
-    }>>;
-    transferSharesInstructions(opts: TransferSharesArgs): Promise<InstructionResult<{}>>;
+    initializeFanoutInstructions(opts: InitializeFanoutArgs): Promise<any>;
+    initializeFanoutForMintInstructions(opts: InitializeFanoutForMintArgs): Promise<any>;
+    addMemberWalletInstructions(opts: AddMemberArgs): Promise<any>;
+    addMemberNftInstructions(opts: AddMemberArgs): Promise<any>;
+    unstakeTokenMemberInstructions(opts: UnstakeMemberArgs): Promise<any>;
+    stakeForTokenMemberInstructions(opts: StakeMemberArgs): Promise<any>;
+    stakeTokenMemberInstructions(opts: StakeMemberArgs): Promise<any>;
+    distributeTokenMemberInstructions(opts: DistributeTokenMemberArgs): Promise<any>;
+    distributeNftMemberInstructions(opts: DistributeMemberArgs): Promise<any>;
+    distributeWalletMemberInstructions(opts: DistributeMemberArgs): Promise<any>;
+    transferSharesInstructions(opts: TransferSharesArgs): Promise<any>;
     initializeFanout(opts: InitializeFanoutArgs): Promise<{
         fanout: PublicKey;
         nativeAccount: PublicKey;
@@ -156,22 +121,10 @@ export declare class FanoutClient {
     addMemberWallet(opts: AddMemberArgs): Promise<{
         membershipAccount: PublicKey;
     }>;
-    stakeTokenMember(opts: StakeMemberArgs): Promise<{
-        membershipVoucher: PublicKey;
-        membershipMintTokenAccount: PublicKey;
-        stakeAccount: PublicKey;
-    }>;
-    stakeForTokenMember(opts: StakeMemberArgs): Promise<{
-        membershipVoucher: PublicKey;
-        membershipMintTokenAccount: PublicKey;
-        stakeAccount: PublicKey;
-    }>;
-    transferShares(opts: TransferSharesArgs): Promise<{}>;
-    unstakeTokenMember(opts: UnstakeMemberArgs): Promise<{
-        membershipVoucher: PublicKey;
-        membershipMintTokenAccount: PublicKey;
-        stakeAccount: PublicKey;
-    }>;
+    stakeTokenMember(opts: StakeMemberArgs): Promise<any>;
+    stakeForTokenMember(opts: StakeMemberArgs): Promise<any>;
+    transferShares(opts: TransferSharesArgs): Promise<any>;
+    unstakeTokenMember(opts: UnstakeMemberArgs): Promise<any>;
     distributeNft(opts: DistributeMemberArgs): Promise<{
         membershipVoucher: PublicKey;
         fanoutForMintMembershipVoucher?: PublicKey;

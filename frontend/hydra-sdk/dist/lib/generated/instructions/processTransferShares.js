@@ -52,7 +52,7 @@ exports.processTransferSharesInstructionDiscriminator = [195, 175, 36, 50, 101, 
  * @category ProcessTransferShares
  * @category generated
  */
-function createProcessTransferSharesInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessTransferSharesInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     const [data] = exports.processTransferSharesStruct.serialize(Object.assign({ instructionDiscriminator: exports.processTransferSharesInstructionDiscriminator }, args));
     const keys = [
         {

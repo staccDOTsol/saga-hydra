@@ -5,11 +5,11 @@ seeds = true
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "mainnet"
-wallet = "~/.config/solana/7i.json"
+cluster = "devnet"
+wallet = "~/7i.json"
 
 [programs.mainnet]
-jare_hydra="ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf"
+jare_hydra="FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1"
 
 [workspace]
 members = [

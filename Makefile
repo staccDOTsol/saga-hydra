@@ -6,7 +6,7 @@
 
 # Variables
 
-
+DOCKERHUB_ORGANIZATION = jrsdunn
 check_docker_env:
 ifeq ($(strip $(DOCKERHUB_ORGANIZATION)),)
 	$(error DOCKERHUB_ORGANIZATION is not set)
@@ -61,12 +61,12 @@ measurement: check_docker_env
 	@docker rm my-switchboard-function > /dev/null
 
 docker_build: check_docker_env
-	docker buildx build --builder cloud-switchboardlabs-default --pull --platform linux/amd64 \
+	docker buildx build  --pull --platform linux/amd64 \
 		-f ./switchboard-functions/savings_game/Dockerfile \
 		-t jrsdunn/saga-hydra-rafflin:latest \
 		./switchboard-functions/savings_game
 docker_publish: check_docker_env
-	docker buildx build --builder cloud-switchboardlabs-default --pull --platform linux/amd64 \
+	docker buildx build  --pull --platform linux/amd64 \
 		-f ./switchboard-functions/savings_game/Dockerfile \
 		-t jrsdunn/saga-hydra-rafflin:latest \
 		--push \

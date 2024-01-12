@@ -22,7 +22,7 @@ default = []
 anchor-lang = { version = "0.29.0", features = ["init-if-needed"] }
 anchor-spl = "0.29.0"
 spl-token = {version="*", features = [ "no-entrypoint" ]}
-mpl-token-metadata = {version="3.3.0"}
+mpl-token-metadata = {version="4.0.0"}
 switchboard-solana = "0.29.79"
 
 [profile.release]

@@ -1,5 +1,5 @@
 // @ts-ignore
-import {transact} from '../js/packages/mobile-wallet-adapter-protocol-web3js';
+import {transact} from '@solana-mobile/mobile-wallet-adapter-protocol-web3js';
 import React, {ComponentProps} from 'react';
 import {Button} from 'react-native-paper';
 

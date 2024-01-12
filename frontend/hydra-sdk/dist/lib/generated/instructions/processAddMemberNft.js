@@ -54,7 +54,7 @@ exports.processAddMemberNftInstructionDiscriminator = [92, 255, 105, 209, 25, 41
  * @category ProcessAddMemberNft
  * @category generated
  */
-function createProcessAddMemberNftInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessAddMemberNftInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b, _c;
     const [data] = exports.processAddMemberNftStruct.serialize(Object.assign({ instructionDiscriminator: exports.processAddMemberNftInstructionDiscriminator }, args));
     const keys = [

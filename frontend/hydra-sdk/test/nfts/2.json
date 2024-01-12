@@ -1,0 +1,12 @@
+{
+  "name": "Saga genesis token",
+  "description": "A non-transferable NFT for Saga owners, which gives access to Saga Rewards\nhttps://solanamobile.com",
+  "image": "https://updg8.com/imgdata/SgbwYCL3W5tFKXgzTUgqgK3jjnrj2KRgTgikN2CtVvv",
+  "properties": {"category":"characters","creators":[{"address":"7ihN8QaTfNoDTRTQGULCzbUT3PHwPDTu5Brcu4iT2paP","share":100}],
+  "files": [
+    {
+      "uri": "https://updg8.com/imgdata/SgbwYCL3W5tFKXgzTUgqgK3jjnrj2KRgTgikN2CtVvv",
+      "type": "image/png"
+    }]
+  }
+}

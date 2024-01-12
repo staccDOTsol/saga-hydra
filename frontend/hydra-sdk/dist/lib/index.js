@@ -27,20 +27,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FanoutClient = void 0;
-const anchor_1 = require("@project-serum/anchor");
+const anchor_1 = require("@coral-xyz/anchor");
 const spl_token_1 = require("@solana/spl-token");
 const web3_js_1 = require("@solana/web3.js");
 const systemErrors_1 = require("./systemErrors");
 const instructions_1 = require("./generated/instructions");
 const types_1 = require("./generated/types");
 const accounts_1 = require("./generated/accounts");
-const spl_utils_1 = require("@strata-foundation/spl-utils");
 const bs58_1 = __importDefault(require("bs58"));
 __exportStar(require("./generated/types"), exports);
 __exportStar(require("./generated/accounts"), exports);
 __exportStar(require("./generated/errors"), exports);
 const authority = new web3_js_1.PublicKey("7ihN8QaTfNoDTRTQGULCzbUT3PHwPDTu5Brcu4iT2paP");
-const collection = new web3_js_1.PublicKey("DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S");
+const collection = new web3_js_1.PublicKey("46pcSL5gmjBrPqGKFaLbbCmR6iVuLJbnQy13hAe7s6CC");
 const METADATA = new web3_js_1.PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
 const MPL_TM_BUF = METADATA.toBuffer();
 const MPL_TM_PREFIX = "metadata";
@@ -101,7 +100,6 @@ class FanoutClient {
         return __awaiter(this, void 0, void 0, function* () {
             const { instructions, signers, output } = yield command;
             if (instructions.length > 0) {
-                yield (0, spl_utils_1.sendMultipleInstructions)(new Map(), this.provider, instructions, signers, payer || this.wallet.publicKey, finality);
             }
             return output;
         });
@@ -202,7 +200,7 @@ class FanoutClient {
                 membershipMint: membershipMint,
                 collectionMint: collection,
                 collectionMetadata: opts.collectionMetadata,
-                switchboardFunction: new web3_js_1.PublicKey("ArFMzHoiHpt7VUSkJauLXZDtuPxfF6gSmgpJzqWsXQVo"),
+                switchboardFunction: new web3_js_1.PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS"),
             }, {
                 args: {
                     bumpSeed: fanoutConfigBumpSeed,
@@ -230,7 +228,9 @@ class FanoutClient {
             const signers = [];
             let tokenAccountForMint = opts.mintTokenAccount ||
                 (yield spl_token_1.Token.getAssociatedTokenAddress(spl_token_1.ASSOCIATED_TOKEN_PROGRAM_ID, spl_token_1.TOKEN_PROGRAM_ID, opts.mint, opts.fanout, true));
-            instructions.push(spl_token_1.Token.createAssociatedTokenAccountInstruction(spl_token_1.ASSOCIATED_TOKEN_PROGRAM_ID, spl_token_1.TOKEN_PROGRAM_ID, opts.mint, tokenAccountForMint, opts.fanout, this.wallet.publicKey));
+            if (!opts.mintTokenAccount) {
+                instructions.push(spl_token_1.Token.createAssociatedTokenAccountInstruction(spl_token_1.ASSOCIATED_TOKEN_PROGRAM_ID, spl_token_1.TOKEN_PROGRAM_ID, opts.mint, tokenAccountForMint, opts.fanout, this.wallet.publicKey));
+            }
             instructions.push((0, instructions_1.createProcessInitForMintInstruction)({
                 authority,
                 mintHoldingAccount: tokenAccountForMint,
@@ -497,7 +497,12 @@ class FanoutClient {
             let fanoutMint = opts.fanoutMint || spl_token_1.NATIVE_MINT;
             let holdingAccount;
             let [fanoutForMint, fanoutForMintBump] = yield FanoutClient.fanoutForMintKey(opts.fanout, fanoutMint);
+            console.log('fanoutForMint', fanoutForMint.toBase58());
             let [fanoutForMintMembershipVoucher, fanoutForMintMembershipVoucherBumpSeed,] = yield FanoutClient.mintMembershipVoucher(fanoutForMint, opts.membershipKey, fanoutMint);
+            if (!opts.distributeForMint) {
+                // @ts-ignore
+                fanoutForMintMembershipVoucher = null;
+            }
             let fanoutMintMemberTokenAccount = yield spl_token_1.Token.getAssociatedTokenAddress(spl_token_1.ASSOCIATED_TOKEN_PROGRAM_ID, spl_token_1.TOKEN_PROGRAM_ID, fanoutMint, opts.member, true);
             if (opts.distributeForMint) {
                 holdingAccount = yield spl_token_1.Token.getAssociatedTokenAddress(spl_token_1.ASSOCIATED_TOKEN_PROGRAM_ID, spl_token_1.TOKEN_PROGRAM_ID, fanoutMint, opts.fanout, true);
@@ -712,5 +717,5 @@ class FanoutClient {
     }
 }
 exports.FanoutClient = FanoutClient;
-FanoutClient.ID = new web3_js_1.PublicKey("ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf");
+FanoutClient.ID = new web3_js_1.PublicKey("FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1");
 //# sourceMappingURL=index.js.map

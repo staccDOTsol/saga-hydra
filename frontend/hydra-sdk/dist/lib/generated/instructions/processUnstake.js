@@ -48,7 +48,7 @@ exports.processUnstakeInstructionDiscriminator = [217, 160, 136, 174, 149, 62, 7
  * @category ProcessUnstake
  * @category generated
  */
-function createProcessUnstakeInstruction(accounts, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessUnstakeInstruction(accounts, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b;
     const [data] = exports.processUnstakeStruct.serialize({
         instructionDiscriminator: exports.processUnstakeInstructionDiscriminator,

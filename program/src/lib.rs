@@ -4,14 +4,13 @@ pub mod error;
 pub mod processors;
 pub mod state;
 pub mod utils;
-
-use anchor_lang::prelude::*;
+pub use switchboard_solana::prelude::*;
 use processors::*;
 use state::MembershipModel;
 
-declare_id!("ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf");
+declare_id!("FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1");
 #[program]
-pub mod hydra {
+pub mod jaredra {
 
     use super::*;
 
@@ -19,81 +18,46 @@ pub mod hydra {
         ctx: Context<InitializeFanout>,
         args: InitializeFanoutArgs,
         model: MembershipModel,
-    ) -> Result<()> {
+    )-> anchor_lang::Result<()> {
         init(ctx, args, model)
     }
-
+    
+    pub fn process_rafflin(
+        ctx: Context<Rafflin>,
+    )-> anchor_lang::Result<()> {
+        rafflin(ctx)
+    }
     pub fn process_init_for_mint(
         ctx: Context<InitializeFanoutForMint>,
         bump_seed: u8,
-    ) -> Result<()> {
+    )-> anchor_lang::Result<()> {
         init_for_mint(ctx, bump_seed)
-    }
-
-    pub fn process_add_member_wallet(
-        ctx: Context<AddMemberWallet>,
-        args: AddMemberArgs,
-    ) -> Result<()> {
-        add_member_wallet(ctx, args)
     }
 
     pub fn process_add_member_nft(
         ctx: Context<AddMemberWithNFT>,
         args: AddMemberArgs,
-    ) -> Result<()> {
+    )-> anchor_lang::Result<()> {
         add_member_nft(ctx, args)
     }
 
-    pub fn process_set_token_member_stake(
-        ctx: Context<SetTokenMemberStake>,
-        shares: u64,
-    ) -> Result<()> {
-        set_token_member_stake(ctx, shares)
-    }
-
-    pub fn process_set_for_token_member_stake(
-        ctx: Context<SetForTokenMemberStake>,
-        shares: u64,
-    ) -> Result<()> {
-        set_for_token_member_stake(ctx, shares)
-    }
 
     pub fn process_distribute_nft_nft(
         ctx: Context<DistributeNftMemberNft>,
-    ) -> Result<()> {
+    )-> anchor_lang::Result<()> {
         distribute_nft_for_nft(ctx)
     }
 
     pub fn process_distribute_nft(
         ctx: Context<DistributeNftMember>,
         distribute_for_mint: bool,
-    ) -> Result<()> {
+    )-> anchor_lang::Result<()> {
         distribute_for_nft(ctx, distribute_for_mint)
     }
-
-
-    pub fn process_distribute_wallet(
-        ctx: Context<DistributeWalletMember>,
-        distribute_for_mint: bool,
-    ) -> Result<()> {
-        distribute_for_wallet(ctx, distribute_for_mint)
-    }
-
-    pub fn process_distribute_token(
-        ctx: Context<DistributeTokenMember>,
-        distribute_for_mint: bool,
-    ) -> Result<()> {
-        distribute_for_token(ctx, distribute_for_mint)
-    }
-    pub fn process_transfer_shares(ctx: Context<TransferShares>, shares: u64) -> Result<()> {
+    pub fn process_transfer_shares(ctx: Context<TransferShares>, shares: u64)-> anchor_lang::Result<()> {
         transfer_shares(ctx, shares)
     }
-
-    pub fn process_unstake(ctx: Context<UnStakeTokenMember>) -> Result<()> {
-        unstake(ctx)
-    }
-
-    pub fn process_remove_member(ctx: Context<RemoveMember>) -> Result<()> {
+    pub fn process_remove_member(ctx: Context<RemoveMember>)-> anchor_lang::Result<()> {
         remove_member(ctx)
     }
 }

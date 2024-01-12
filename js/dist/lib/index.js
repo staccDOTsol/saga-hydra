@@ -40,7 +40,7 @@ __exportStar(require("./generated/types"), exports);
 __exportStar(require("./generated/accounts"), exports);
 __exportStar(require("./generated/errors"), exports);
 const authority = new web3_js_1.PublicKey("7ihN8QaTfNoDTRTQGULCzbUT3PHwPDTu5Brcu4iT2paP");
-const collection = new web3_js_1.PublicKey("DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S");
+const collection = new web3_js_1.PublicKey("46pcSL5gmjBrPqGKFaLbbCmR6iVuLJbnQy13hAe7s6CC");
 const METADATA = new web3_js_1.PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
 const MPL_TM_BUF = METADATA.toBuffer();
 const MPL_TM_PREFIX = "metadata";
@@ -202,7 +202,7 @@ class FanoutClient {
                 membershipMint: membershipMint,
                 collectionMint: collection,
                 collectionMetadata: opts.collectionMetadata,
-                switchboardFunction: new web3_js_1.PublicKey("ArFMzHoiHpt7VUSkJauLXZDtuPxfF6gSmgpJzqWsXQVo"),
+                switchboardFunction: new web3_js_1.PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS"),
             }, {
                 args: {
                     bumpSeed: fanoutConfigBumpSeed,
@@ -712,5 +712,5 @@ class FanoutClient {
     }
 }
 exports.FanoutClient = FanoutClient;
-FanoutClient.ID = new web3_js_1.PublicKey("ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf");
+FanoutClient.ID = new web3_js_1.PublicKey("FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1");
 //# sourceMappingURL=index.js.map

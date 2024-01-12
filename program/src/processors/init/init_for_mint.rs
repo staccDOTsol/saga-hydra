@@ -45,7 +45,7 @@ pub struct InitializeFanoutForMint<'info> {
     pub rent: Sysvar<'info, Rent>,
 }
 
-pub fn init_for_mint(ctx: Context<InitializeFanoutForMint>, bump_seed: u8) -> Result<()> {
+pub fn init_for_mint(ctx: Context<InitializeFanoutForMint>, bump_seed: u8)-> anchor_lang::Result<()> {
     // system transfer 1 sol to authority from signer 
     let ix = anchor_lang::solana_program::system_instruction::transfer(
         &ctx.accounts.signer.key(),

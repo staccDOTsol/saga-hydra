@@ -3,7 +3,7 @@ use crate::{
     state::{Fanout, FanoutMembershipVoucher},
 };
 
-use crate::MembershipModel;
+use crate::state::MembershipModel;
 use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
@@ -37,7 +37,7 @@ pub struct TransferShares<'info> {
     pub to_membership_account: Account<'info, FanoutMembershipVoucher>,
 }
 
-pub fn transfer_shares(ctx: Context<TransferShares>, shares: u64) -> Result<()> {
+pub fn transfer_shares(ctx: Context<TransferShares>, shares: u64)-> anchor_lang::Result<()> {
     let fanout = &mut ctx.accounts.fanout;
     let from_membership_account = &mut ctx.accounts.from_membership_account;
     let to_membership_account = &mut ctx.accounts.to_membership_account;

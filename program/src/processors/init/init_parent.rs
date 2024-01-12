@@ -61,7 +61,7 @@ pub fn init(
     ctx: Context<InitializeFanout>,
     args: InitializeFanoutArgs,
     model: MembershipModel,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     let membership_mint = &ctx.accounts.membership_mint;
     let fanout = &mut ctx.accounts.fanout;
     fanout.authority = ctx.accounts.authority.to_account_info().key();
@@ -79,12 +79,6 @@ pub fn init(
     } else {
         Some(membership_mint.key())
     };
-    match fanout.membership_model {
-        MembershipModel::Wallet => {
-            fanout.membership_mint = None;
-            fanout.total_staked_shares = None;
-        }
-        MembershipModel::NFT => {
             fanout.membership_mint = None;
             fanout.total_staked_shares = None;
             let metadata = ctx.accounts.collection_metadata.to_account_info();
@@ -94,31 +88,7 @@ pub fn init(
             }
             fanout.collection_mint = ctx.accounts.collection_mint.to_account_info().key();  
             fanout.default_weight = args.default_weight.unwrap();         
-        }
-        MembershipModel::Token => {
-            fanout.total_shares = membership_mint.supply;
-            fanout.total_available_shares = 0;
-            if fanout.membership_mint.is_none() {
-                return Err(HydraError::MintAccountRequired.into());
-            }
-            let mint = &ctx.accounts.membership_mint;
-            fanout.total_staked_shares = Some(0);
-            if !mint.is_initialized {
-                let cpi_program = ctx.accounts.token_program.to_account_info();
-                let accounts = anchor_spl::token::InitializeMint {
-                    mint: mint.to_account_info(),
-                    rent: ctx.accounts.rent.to_account_info(),
-                };
-                let cpi_ctx = CpiContext::new(cpi_program, accounts);
-                anchor_spl::token::initialize_mint(
-                    cpi_ctx,
-                    0,
-                    &ctx.accounts.authority.to_account_info().key(),
-                    Some(&ctx.accounts.authority.to_account_info().key()),
-                )?;
-            }
-        }
-    };
+     
 
     Ok(())
 }

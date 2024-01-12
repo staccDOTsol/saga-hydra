@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet';
-import * as web3 from '@solana/web3.js';
+import * as beet from '@metaplex-foundation/beet'
+import * as web3 from '@solana/web3.js'
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js';
  * @category generated
  */
 export const processRemoveMemberStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number[] /* size: 8 */;
+  instructionDiscriminator: number[] /* size: 8 */
 }>(
   [['instructionDiscriminator', beet.uniformFixedSizeArray(beet.u8, 8)]],
-  'ProcessRemoveMemberInstructionArgs',
-);
+  'ProcessRemoveMemberInstructionArgs'
+)
 /**
  * Accounts required by the _processRemoveMember_ instruction
  *
@@ -32,15 +32,17 @@ export const processRemoveMemberStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type ProcessRemoveMemberInstructionAccounts = {
-  authority: web3.PublicKey;
-  member: web3.PublicKey;
-  fanout: web3.PublicKey;
-  membershipAccount: web3.PublicKey;
-  destination: web3.PublicKey;
-  anchorRemainingAccounts?: web3.AccountMeta[];
-};
+  authority: web3.PublicKey
+  member: web3.PublicKey
+  fanout: web3.PublicKey
+  membershipAccount: web3.PublicKey
+  destination: web3.PublicKey
+  anchorRemainingAccounts?: web3.AccountMeta[]
+}
 
-export const processRemoveMemberInstructionDiscriminator = [9, 45, 36, 163, 245, 40, 150, 85];
+export const processRemoveMemberInstructionDiscriminator = [
+  9, 45, 36, 163, 245, 40, 150, 85,
+]
 
 /**
  * Creates a _ProcessRemoveMember_ instruction.
@@ -52,11 +54,11 @@ export const processRemoveMemberInstructionDiscriminator = [9, 45, 36, 163, 245,
  */
 export function createProcessRemoveMemberInstruction(
   accounts: ProcessRemoveMemberInstructionAccounts,
-  programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf'),
+  programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')
 ) {
   const [data] = processRemoveMemberStruct.serialize({
     instructionDiscriminator: processRemoveMemberInstructionDiscriminator,
-  });
+  })
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.authority,
@@ -83,11 +85,11 @@ export function createProcessRemoveMemberInstruction(
       isWritable: true,
       isSigner: false,
     },
-  ];
+  ]
 
   if (accounts.anchorRemainingAccounts != null) {
     for (const acc of accounts.anchorRemainingAccounts) {
-      keys.push(acc);
+      keys.push(acc)
     }
   }
 
@@ -95,6 +97,6 @@ export function createProcessRemoveMemberInstruction(
     programId,
     keys,
     data,
-  });
-  return ix;
+  })
+  return ix
 }

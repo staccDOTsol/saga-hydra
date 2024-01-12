@@ -55,7 +55,7 @@ exports.processDistributeWalletInstructionDiscriminator = [
  * @category ProcessDistributeWallet
  * @category generated
  */
-function createProcessDistributeWalletInstruction(accounts, args, programId = new web3.PublicKey('ANSsi8dnmwyjQaGNC4PhRMU8WfBgKcvKzC9bPMBiJAPf')) {
+function createProcessDistributeWalletInstruction(accounts, args, programId = new web3.PublicKey('FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1')) {
     var _a, _b, _c;
     const [data] = exports.processDistributeWalletStruct.serialize(Object.assign({ instructionDiscriminator: exports.processDistributeWalletInstructionDiscriminator }, args));
     const keys = [

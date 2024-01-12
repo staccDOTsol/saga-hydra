@@ -8,7 +8,7 @@ import {
   Transaction,
   TransactionInstruction,
 } from '@solana/web3.js';
-import {transact} from '../js/packages/mobile-wallet-adapter-protocol-web3js';
+import {transact} from '@solana-mobile/mobile-wallet-adapter-protocol-web3js';
 import React, {useContext, useState} from 'react';
 import {Linking, StyleSheet, View} from 'react-native';
 import {

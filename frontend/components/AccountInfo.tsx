@@ -30,11 +30,11 @@ import {Text} from 'react-native-paper';
 import { useEffect, useState } from 'react'
 import useAuthorization from '../utils/useAuthorization'
 // @ts-ignore
-import { transact } from '../js/packages/mobile-wallet-adapter-protocol-web3js'
+import { transact } from '@solana-mobile/mobile-wallet-adapter-protocol-web3js'
 import { useConnection } from '@solana/wallet-adapter-react'
 import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { AnchorProvider } from '@coral-xyz/anchor';
-let switchboardFunction = new PublicKey("ArFMzHoiHpt7VUSkJauLXZDtuPxfF6gSmgpJzqWsXQVo")
+let switchboardFunction = new PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS")
 type Props = Readonly<{
   mySelectedAccount: { address: string;
     label?: string | undefined;
@@ -75,7 +75,7 @@ console.log(mySelectedAccount)
   }>({})
 
   useEffect(() => {
-    const anchor = "ErdDj2hJr89oDMqqLQjpxs9ZEvFwSiU1D98b3sE8xzSy"
+    const anchor = "B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"
     const fanoutMint = fanoutMints.data?.find(
       (fanoutMint) =>
         fanoutMint.config.symbol === anchor ||
@@ -307,8 +307,7 @@ const MyAssets = () => {
       ASSOCIATED_TOKEN_PROGRAM_ID,
       TOKEN_PROGRAM_ID,
       new PublicKey(item.id),
-      new PublicKey("ErdDj2hJr89oDMqqLQjpxs9ZEvFwSiU1D98b3sE8xzSy"),
-      true
+      new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
     
     )
     let maybe_account = await connection.getAccountInfo(ata)
@@ -318,7 +317,7 @@ const MyAssets = () => {
         TOKEN_PROGRAM_ID,
         new PublicKey(item.id),
         ata,
-        new PublicKey("ErdDj2hJr89oDMqqLQjpxs9ZEvFwSiU1D98b3sE8xzSy"),
+        new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
         selectedAccount.publicKey
       ))
     }
@@ -449,7 +448,7 @@ ToastAndroid.show('SPL Tokens sent!', ToastAndroid.SHORT)
           id: 'my-id',
           method: 'searchAssets',
           params: {
-            ownerAddress: "ErdDj2hJr89oDMqqLQjpxs9ZEvFwSiU1D98b3sE8xzSy",
+            ownerAddress: "B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK",
             page: 1,
             tokenType: "all"
           },

@@ -19,7 +19,7 @@ pub fn distribute_native<'info>(
     membership_voucher: &mut Account<'info, FanoutMembershipVoucher>,
     member: UncheckedAccount<'info>,
     rent: Sysvar<'info, anchor_lang::prelude::Rent>,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     let total_shares = fanout.total_shares as u64;
     if holding_account.key() != fanout.account_key {
         return Err(HydraError::InvalidHoldingAccount.into());
@@ -27,29 +27,38 @@ pub fn distribute_native<'info>(
 
     let fanout_snapshot = fanout.to_account_info().lamports();
     let fanout_snapshot_less_min = current_lamports(&rent, FANOUT_ACCOUNT_SIZE, fanout_snapshot)?;
+    msg!("Fanout Snapshot: {}", fanout_snapshot);
     let fanout_transfer = transfer_native(
         fanout.to_account_info(),
         holding_account.to_account_info(),
         fanout_snapshot,
         fanout_snapshot_less_min,
-    );
+    );  
+    msg!("Fanout Transfer: {:?}", fanout_transfer);
     if fanout_transfer.is_err() {
         println!("Fanout Transfer Error {:?}", fanout_transfer.err());
         return Err(HydraError::BadArtithmetic.into());
     }
 
     let current_snapshot = holding_account.lamports();
+    msg!("Current Snapshot: {}", current_snapshot);
     let current_snapshot_less_min =
         current_lamports(&rent, HOLDING_ACCOUNT_SIZE, current_snapshot)?;
+        msg!("Current Snapshot Less Min: {}", current_snapshot_less_min);
     update_inflow(fanout, current_snapshot_less_min)?;
+    msg!("Update Inflow");
     let inflow_diff = calculate_inflow_change(fanout.total_inflow, membership_voucher.last_inflow)?;
+    msg!("Inflow Diff: {}", inflow_diff);
     let shares = membership_voucher.shares as u64;
+    msg!("Shares: {}", shares);
     let dif_dist = calculate_dist_amount(shares, inflow_diff, total_shares)?;
+    msg ! ( "Dif Dist: {}", dif_dist ) ;
     update_snapshot(fanout, membership_voucher, dif_dist)?;
     membership_voucher.total_inflow = membership_voucher
         .total_inflow
         .checked_add(dif_dist)
         .ok_or(HydraError::NumericalOverflow)?;
+    msg!("Membership Voucher Total Inflow: {}", membership_voucher.total_inflow);
     transfer_native(
         holding_account.to_account_info(),
         member.to_account_info(),
@@ -59,7 +68,7 @@ pub fn distribute_native<'info>(
 }
 
 pub fn distribute_mint<'info>(
-    fanout_mint: Account<'info, Mint>,
+    fanout_mint: UncheckedAccount<'info>,
     fanout_for_mint: &mut UncheckedAccount<'info>,
     fanout_for_mint_membership_voucher: &mut Account<'info, FanoutMembershipMintVoucher>,
     fanout_mint_member_token_account: &mut UncheckedAccount<'info>,
@@ -72,7 +81,7 @@ pub fn distribute_mint<'info>(
     payer: AccountInfo<'info>,
     member: UncheckedAccount<'info>,
     membership_key: &Pubkey,
-) -> Result<()> {
+)-> anchor_lang::Result<()> {
     msg!("Distribute For Mint");
     if membership_voucher.stake_time == 0 {
         membership_voucher.stake_time = Clock::get()?.unix_timestamp;
