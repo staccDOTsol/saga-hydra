@@ -30,10 +30,10 @@ pub struct DistributeNftMemberNft<'info> {
     pub switchboard_function: AccountLoader<'info, FunctionAccountData>,
      #[account(
          mut,
-     //   constraint = switchboard_request.validate_signer(
-     //        &switchboard_function,
-      //       &enclave_signer
-         //)?
+        constraint = switchboard_request.validate_signer(
+             &switchboard_function,
+             &enclave_signer
+         )?
      )]
     pub switchboard_request: Box<Account<'info, FunctionRequestAccountData>>,
     pub enclave_signer: Signer<'info>,

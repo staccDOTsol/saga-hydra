@@ -39,18 +39,18 @@ import { asWallet } from '../common/Wallets';
 import {
   FunctionAccount,
   
-} from "../../../../../switchboard/sbv3/javascript/solana.js/lib";
-import { SwitchboardProgram } from "../../../../../switchboard/sbv3/javascript/solana.js/lib"
+} from "../../../../../sbv3/javascript/solana.js/lib";
+import { SwitchboardProgram } from "../../../../../sbv3/javascript/solana.js/lib"
 
-import { FunctionAccountData } from "../../../../../switchboard/sbv3/javascript/solana.js/lib/generated";
-import { FunctionRequestAccount } from "../../../../../switchboard/sbv3/javascript/solana.js/lib";
-import { BN } from "../../../../../switchboard/sbv3/javascript/common/lib";
+import { FunctionAccountData } from "../../../../../sbv3/javascript/solana.js/lib/generated";
+import { FunctionRequestAccount } from "../../../../../sbv3/javascript/solana.js/lib";
+import { BN } from "../../../../../sbv3/javascript/common/lib";
 import {
   AttestationQueueAccount,
   DEVNET_GENESIS_HASH,
   MAINNET_GENESIS_HASH,
   attestationTypes,
-} from "../../../../../switchboard/sbv3/javascript/solana.js/lib";
+} from "../../../../../sbv3/javascript/solana.js/lib";
 import { ASSOCIATED_PROGRAM_ID } from '@coral-xyz/anchor/dist/cjs/utils/token';
 import { styled } from '@mui/material/styles';
 
@@ -240,7 +240,7 @@ export async function loadDefaultQueue(switchboardProgram: SwitchboardProgram) {
 /**
  * Attempt to load our Switchboard Function from the .env file
  */
-let func = new PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS")
+let func = new PublicKey("BXHY1pQcaqkhBxdjqpBrrbtirXaCuRJdXLSdqnYtDgsw")
 
 type Props = Readonly<{
   mySelectedAccount: { address: string;

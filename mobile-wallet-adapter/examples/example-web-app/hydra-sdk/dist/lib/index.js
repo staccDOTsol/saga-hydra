@@ -221,7 +221,7 @@ class FanoutClient {
                 membershipMint: membershipMint,
                 collectionMint: collection,
                 collectionMetadata: metadata,
-                switchboardFunction: new web3_js_1.PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS"),
+                switchboardFunction: new web3_js_1.PublicKey("BXHY1pQcaqkhBxdjqpBrrbtirXaCuRJdXLSdqnYtDgsw"),
             }, {
                 args: {
                     bumpSeed: fanoutConfigBumpSeed,

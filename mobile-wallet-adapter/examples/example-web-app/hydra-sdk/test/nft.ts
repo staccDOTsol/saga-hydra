@@ -45,7 +45,7 @@ let nfts: [{earliest: number, id: String}] = JSON.parse(fs.readFileSync('test/nf
           microLamports: 666420})]
           
           let members = await fanoutSdk.getMembers({
-            fanout: new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
+            fanout: new PublicKey("2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff"),
           })
         for (var i in ["DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S"] ){
        let nft = new PublicKey("DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S")
@@ -55,7 +55,7 @@ let nfts: [{earliest: number, id: String}] = JSON.parse(fs.readFileSync('test/nf
 
 
 let blarg = await fanoutSdk.addMemberNftInstructions({
-    fanout: new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
+    fanout: new PublicKey("2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff"),
     shares,
     membershipKey: nft
       })  

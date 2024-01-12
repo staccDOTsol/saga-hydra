@@ -7759,7 +7759,7 @@ let traits = [
         console.log(fanout.toBase58())
         console.log(nativeAccount.toBase58())
         /*
-B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK
+2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff
 9pboXKyBZSf7erQjj8PEZ2GbPgmaZ7p5VzSDXZMRjjcR*/
         let failed : any[] = []
         let signers: any[] = []

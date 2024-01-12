@@ -54,7 +54,8 @@
     "bn.js": "^5.2.0",
     "bs58": "^5.0.0",
     "debug": "^4.3.3",
-    "helius-sdk": "^1.2.2"
+    "helius-sdk": "^1.2.2",
+    "node-fetch": "2"
   },
   "devDependencies": {
     "@metaplex-foundation/amman": "^0.12.0",

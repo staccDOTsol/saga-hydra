@@ -51,7 +51,7 @@ let nfts = {"JCvzysmdf8uhFTLXs3vuVBDzsyGyGUf3oqTcGbBdRjA7":1582,"JCk6PNbBywwmPHg
           i++
           try {
         const { membershipAccount } = await fanoutSdk.addMemberNft({
-          fanout: init.fanout,//new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
+          fanout: init.fanout,//new PublicKey("2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff"),
           fanoutNativeAccount: init.nativeAccount,// new PublicKey("EaPhtDHz6zmqzUFhiN2rgvxywmtWkw4CWYPrpT5e6hS6"),
           membershipKey: new PublicKey(nft),
           shares: 1//nft.earliest,

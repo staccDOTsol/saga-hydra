@@ -34,7 +34,7 @@ import { transact } from '@solana-mobile/mobile-wallet-adapter-protocol-web3js'
 import { useConnection } from '@solana/wallet-adapter-react'
 import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { AnchorProvider } from '@coral-xyz/anchor';
-let switchboardFunction = new PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS")
+let switchboardFunction = new PublicKey("BXHY1pQcaqkhBxdjqpBrrbtirXaCuRJdXLSdqnYtDgsw")
 type Props = Readonly<{
   mySelectedAccount: { address: string;
     label?: string | undefined;
@@ -75,7 +75,7 @@ console.log(mySelectedAccount)
   }>({})
 
   useEffect(() => {
-    const anchor = "B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"
+    const anchor = "2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff"
     const fanoutMint = fanoutMints.data?.find(
       (fanoutMint) =>
         fanoutMint.config.symbol === anchor ||
@@ -307,7 +307,7 @@ const MyAssets = () => {
       ASSOCIATED_TOKEN_PROGRAM_ID,
       TOKEN_PROGRAM_ID,
       new PublicKey(item.id),
-      new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
+      new PublicKey("2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff"),
     
     )
     let maybe_account = await connection.getAccountInfo(ata)
@@ -317,7 +317,7 @@ const MyAssets = () => {
         TOKEN_PROGRAM_ID,
         new PublicKey(item.id),
         ata,
-        new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
+        new PublicKey("2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff"),
         selectedAccount.publicKey
       ))
     }
@@ -438,7 +438,7 @@ ToastAndroid.show('SPL Tokens sent!', ToastAndroid.SHORT)
 
   useEffect(() => {
     const fetchAssets = async () => {
-      const response = await fetch("https://mainnet.helius-rpc.com/?api-key=1cc00270-904d-4624-9ee4-4f2452504cbe", {
+      const response = await fetch("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -448,7 +448,7 @@ ToastAndroid.show('SPL Tokens sent!', ToastAndroid.SHORT)
           id: 'my-id',
           method: 'searchAssets',
           params: {
-            ownerAddress: "B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK",
+            ownerAddress: "2xtQ8P5LDavTWab6AS4qeDo5osZETYtFioKPVTVTy5Ff",
             page: 1,
             tokenType: "all"
           },
@@ -531,7 +531,7 @@ ToastAndroid.show('SPL Tokens sent!', ToastAndroid.SHORT)
 
   useEffect(() => {
     const fetchAssets = async (publicKey) => {
-      const response = await fetch("https://mainnet.helius-rpc.com/?api-key=1cc00270-904d-4624-9ee4-4f2452504cbe", {
+      const response = await fetch("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

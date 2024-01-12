@@ -26,7 +26,7 @@ const AccountTokenBalances = ({publicKey}) => {
 
   useEffect(() => {
     const fetchAssets = async () => {
-      const response = await fetch("https://mainnet.helius-rpc.com/?api-key=1cc00270-904d-4624-9ee4-4f2452504cbe", {
+      const response = await fetch("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
