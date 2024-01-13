@@ -34,7 +34,7 @@ import { transact } from '@solana-mobile/mobile-wallet-adapter-protocol-web3js'
 import { useConnection } from '@solana/wallet-adapter-react'
 import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { AnchorProvider } from '@coral-xyz/anchor';
-let switchboardFunction = new PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS")
+let switchboardFunction = new PublicKey("BXHY1pQcaqkhBxdjqpBrrbtirXaCuRJdXLSdqnYtDgsw")
 type Props = Readonly<{
   mySelectedAccount: { address: string;
     label?: string | undefined;

@@ -378,7 +378,7 @@ export class FanoutClient {
           membershipMint: membershipMint,
           collectionMint: collection,
           collectionMetadata: opts.collectionMetadata,
-          switchboardFunction: new PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS"),
+          switchboardFunction: new PublicKey("BXHY1pQcaqkhBxdjqpBrrbtirXaCuRJdXLSdqnYtDgsw"),
         },
         {
           args: {

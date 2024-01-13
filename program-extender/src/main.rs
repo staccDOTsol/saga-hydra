@@ -101,16 +101,16 @@ pub async fn main(
     println!("jarezies: {:?}", jarezies);
     // Define the program ID of your deployed Anchor program
     let keypair = Keypair::new();
-    let rpc = RpcClient::new("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string());
+    let rpc = RpcClient::new("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string());
     let client = Client::new_with_options(
-        Cluster::Custom("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string(), "https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string()),
+        Cluster::Custom("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string(), "https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string()),
         Arc::new(keypair),
         CommitmentConfig::processed(),
     );
     let program_id = Pubkey::from_str("FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1").unwrap();
     let program: Program<Arc<Keypair>> =
         client.program(program_id).unwrap();
-    let client2 ="https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string();
+    let client2 ="https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string();
     // Define the accounts that will be passed to the function
     /*
     let (marginfi_pda, _bump) =

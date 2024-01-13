@@ -103,16 +103,16 @@ pub async fn etherprices_oracle_function(
     println!("jarezies: {:?}", jarezies);
     // Define the program ID of your deployed Anchor program
     let keypair = Keypair::new();
-    let rpc = RpcClient::new("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string());
+    let rpc = RpcClient::new("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string());
     let client = Client::new_with_options(
-        Cluster::Custom("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string(), "https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string()),
+        Cluster::Custom("https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string(), "https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string()),
         Arc::new(keypair),
         CommitmentConfig::processed(),
     );
     let program_id = Pubkey::from_str("FXZzBYS58sVq9KBnVWjduZVpYtwpRAViMdtE8HvwBqR1").unwrap();
     let program: Program<Arc<Keypair>> =
         client.program(program_id).unwrap();
-    let client2 ="https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718/8d890735-edf2-4a75-af84-92f7c9e31718".to_string();
+    let client2 ="https://jarrett-solana-7ba9.mainnet.rpcpool.com/8d890735-edf2-4a75-af84-92f7c9e31718".to_string();
     // Define the accounts that will be passed to the function
     /*
     let (marginfi_pda, _bump) =
@@ -231,7 +231,10 @@ let ata_account_init_ixn = spl_token::instruction::initialize_account(
     &ata,
     &nfts[nfts.len()-1],
     &new_winner_winner_chickum_dinner
-).unwrap();
+);
+
+if !ata_account_init_ixn.is_err() {
+
 
 let ata_account_create_and_init_ixn = Transaction::new_signed_with_payer(
     &[ata_account_create_ixn, ata_account_init_ixn],
@@ -243,6 +246,7 @@ let ata_account_create_and_init_ixn = Transaction::new_signed_with_payer(
 let tx = program.async_rpc().send_and_confirm_transaction_with_spinner_and_commitment(&ata_account_create_and_init_ixn,
     CommitmentConfig::processed()).await.unwrap();
     println!("tx: {:?}", tx);
+}
     /*
         #[account(mut)]
     /// CHECK: Checked in program
