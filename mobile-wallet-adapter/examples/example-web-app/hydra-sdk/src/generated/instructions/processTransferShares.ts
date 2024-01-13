@@ -80,7 +80,7 @@ export function createProcessTransferSharesInstruction(
   })
   const keys: web3.AccountMeta[] = [
     {
-      pubkey: new web3.PublicKey("JARehRjGUkkEShpjzfuV4ERJS25j8XhamL776FAktNGm"),
+      pubkey: accounts.authority,
       isWritable: false,
       isSigner: true,
     },

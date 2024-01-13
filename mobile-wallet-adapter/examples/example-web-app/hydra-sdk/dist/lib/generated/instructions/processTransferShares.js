@@ -58,7 +58,7 @@ function createProcessTransferSharesInstruction(accounts, args, programId = new 
     const [data] = exports.processTransferSharesStruct.serialize(Object.assign({ instructionDiscriminator: exports.processTransferSharesInstructionDiscriminator }, args));
     const keys = [
         {
-            pubkey: new web3.PublicKey("JARehRjGUkkEShpjzfuV4ERJS25j8XhamL776FAktNGm"),
+            pubkey: accounts.authority,
             isWritable: false,
             isSigner: true,
         },

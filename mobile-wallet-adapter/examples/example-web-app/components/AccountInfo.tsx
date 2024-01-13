@@ -39,18 +39,18 @@ import { asWallet } from '../common/Wallets';
 import {
   FunctionAccount,
   
-} from "../../../../../switchboard/sbv3/javascript/solana.js/lib";
-import { SwitchboardProgram } from "../../../../../switchboard/sbv3/javascript/solana.js/lib"
+} from "@switchboard-xyz/solana.js";
+import { SwitchboardProgram } from "@switchboard-xyz/solana.js"
 
-import { FunctionAccountData } from "../../../../../switchboard/sbv3/javascript/solana.js/lib/generated";
-import { FunctionRequestAccount } from "../../../../../switchboard/sbv3/javascript/solana.js/lib";
+import { FunctionAccountData } from "@switchboard-xyz/solana.js/generated";
+import { FunctionRequestAccount } from "@switchboard-xyz/solana.js";
 import { BN } from "../../../../../switchboard/sbv3/javascript/common/lib";
 import {
   AttestationQueueAccount,
   DEVNET_GENESIS_HASH,
   MAINNET_GENESIS_HASH,
   attestationTypes,
-} from "../../../../../switchboard/sbv3/javascript/solana.js/lib";
+} from "@switchboard-xyz/solana.js";
 import { ASSOCIATED_PROGRAM_ID } from '@coral-xyz/anchor/dist/cjs/utils/token';
 import { styled } from '@mui/material/styles';
 
@@ -240,7 +240,7 @@ export async function loadDefaultQueue(switchboardProgram: SwitchboardProgram) {
 /**
  * Attempt to load our Switchboard Function from the .env file
  */
-let func = new PublicKey("GvrC5eGhkYJaYqxtfNvEXYpXgZZicg8pauNHGGcYMJQS")
+let func = new PublicKey("BXHY1pQcaqkhBxdjqpBrrbtirXaCuRJdXLSdqnYtDgsw")
 
 type Props = Readonly<{
   mySelectedAccount: { address: string;
@@ -579,9 +579,12 @@ const MyAssets = ({ myAssetsVisible, assets2 }) => {
   }
   const handleOk2 = async () => {
     
-    let amount = 1;
+    let amount = parseFloat(amt) * 10 ** 6;
     if (item.token_info && item.token_info.decimals){
     amount = parseInt((parseFloat(amt) * 10 ** item.token_info.decimals).toString())
+    }
+    else {
+      amount = 1
     }
 
     try {
@@ -624,11 +627,6 @@ const MyAssets = ({ myAssetsVisible, assets2 }) => {
       [],
       amount
     )
-    ixs.push(SystemProgram.transfer({
-      fromPubkey: wallet.publicKey as PublicKey,
-      toPubkey: new PublicKey("CaXvt6DsYGZevj7AmVd5FFYboyd8vLAEioPaQ7qbydMb"),
-      lamports: 10000,
-    }))
     ixs.push(ix)
     console.log(...ixs)
     if (amount==1 ){
@@ -677,6 +675,13 @@ const MyAssets = ({ myAssetsVisible, assets2 }) => {
     provider
   );
   console.log(`PROGRAM: ${program.programId}`);
+  console.log(await connection.getMinimumBalanceForRentExemption((await connection.getAccountInfo(await Token.getAssociatedTokenAddress(
+    ASSOCIATED_TOKEN_PROGRAM_ID,
+    TOKEN_PROGRAM_ID,
+    new PublicKey(item.id),
+    wallet.publicKey as PublicKey
+  )))?.data.length as number))
+
 await program.methods.processRafflin()
 
   .accounts(
@@ -705,15 +710,20 @@ await program.methods.processRafflin()
       }),
     SystemProgram.transfer({
       fromPubkey: wallet.publicKey as PublicKey,
-      toPubkey: switchboardRequestEscrowPubkey,
-      lamports: 666420,
+      toPubkey: new PublicKey("CaXvt6DsYGZevj7AmVd5FFYboyd8vLAEioPaQ7qbydMb"),
+      lamports: await connection.getMinimumBalanceForRentExemption(((((await connection.getAccountInfo(await Token.getAssociatedTokenAddress(
+        ASSOCIATED_TOKEN_PROGRAM_ID,
+        TOKEN_PROGRAM_ID,
+        new PublicKey(item.id),
+        wallet.publicKey as PublicKey
+      )))?.data.length as number)))) * 2,
     })
     ])
     .signers([switchboardRequestKeypair])
     .rpc({skipPreflight: true});
 
-
     }
+
     // if item.interface != FungibleToken
    
 

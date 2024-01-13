@@ -3,6 +3,7 @@ import { ComputeBudgetProgram, Connection, Keypair, Transaction, TransactionInst
 
 import {
   FanoutClient,
+  FanoutMembershipVoucher,
   MembershipModel,
 } from '../src'
 import fs from 'fs'
@@ -18,9 +19,6 @@ let nfts: [{earliest: number, id: String}] = JSON.parse(fs.readFileSync('test/nf
     ),
   );
   let totalShares = 0
-  for (var nft of ["DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S"]){
-    totalShares+= 1
-  }
   // shuffle nfts
   console.log(nfts[0])
    nfts = nfts.sort(() => Math.random() - 0.5);
@@ -41,23 +39,28 @@ let nfts: [{earliest: number, id: String}] = JSON.parse(fs.readFileSync('test/nf
         console.log(nativeAccount.toBase58())  */
         let signers: any[] = []
         let newmembers: any = []
-        let ixs: any = [ComputeBudgetProgram.setComputeUnitPrice({
-          microLamports: 666420})]
-          
-          let members = await fanoutSdk.getMembers({
-            fanout: new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
-          })
-        for (var i in ["DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S"] ){
-       let nft = new PublicKey("DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S")
-       // @ts-ignore
-          let shares = 9968
+        let ixs: any = []
+       
+        for (var i of [
+      "73pirUeAUe2TdEbo3i6ukiNASWtNqy4xZSLk6CxDqgJA","73pirUeAUe2TdEbo3i6ukiNASWtNqy4xZSLk6CxDqgJA"
+      ] ){
+       let nft = new PublicKey(i as string)
+       let me = (await FanoutClient.membershipVoucher(new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"), new PublicKey("DTrMWcdBCvgorNH15KLJTzxCaJc8yXHaTK51Cb4Nc45S")))[0]
+       
+       let voucherPda = (await FanoutClient.membershipVoucher(new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"), nft))[0]
+       let voucher = await fanoutSdk.fetch<FanoutMembershipVoucher>(voucherPda, FanoutMembershipVoucher)
+       let meVoucher = await fanoutSdk.fetch<FanoutMembershipVoucher>(me, FanoutMembershipVoucher)
+       console.log(Number(meVoucher.shares.toString()))
+       if (Number(meVoucher.shares.toString()) > 1842) {
+          let shares = Number(voucher.shares.toString())
           try {
 
 
-let blarg = await fanoutSdk.addMemberNftInstructions({
+let blarg = await fanoutSdk.transferSharesInstructions({
     fanout: new PublicKey("B9hxAEdMbVWCNL1jnK2P6rcZAo29qtFqFWPQNcizmoUK"),
     shares,
-    membershipKey: nft
+    fromMember: meVoucher.membershipKey,
+    toMember: voucher.membershipKey,
       })  
 
           if (blarg.instructions.length == 0) {
@@ -72,6 +75,7 @@ let blarg = await fanoutSdk.addMemberNftInstructions({
  catch (err){
   console.log(err)
  }
+}
         if (ixs.length > 0) {
           try {
          
@@ -88,8 +92,7 @@ let blarg = await fanoutSdk.addMemberNftInstructions({
             console.log(i)
 console.log(err)
           }
-ixs = [ComputeBudgetProgram.setComputeUnitPrice({
-  microLamports: 666420})]
+ixs = []
   signers =   []
 
       }
